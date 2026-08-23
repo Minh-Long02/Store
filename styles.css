@@ -457,13 +457,16 @@ a {
 
 footer {
     background: white;
-     color: black;
-    padding: 65px 4vw 26px
+    color: black;
+    padding: 6px 4vw 26px
 }
 
 .footer-mark {
+    display: block;
     color: black;
-    font-size: 54px
+    width: 150px;
+    height: auto;
+    margin-bottom: -40px;
 }
 
 .footer-links {
@@ -471,6 +474,7 @@ footer {
     gap: 130px;
     margin: 70px 0
 }
+
 
 .footer-links div {
     display: flex;
@@ -1263,10 +1267,11 @@ footer {
 
     .sidebar-logo img {
         display: block;
-        width: 54px;
-        height: 54px;
+        width: 169px;
+        height: 79px;
         object-fit: contain;
-        margin-bottom: 9px;
+        margin-bottom: -19px;
+        margin-top: 64px;
     }
 
     .sidebar-logo span {
@@ -1340,6 +1345,7 @@ footer {
 
     .announcement, .site-header, main, footer {
         margin-left: 194px;
+        
     }
 
     .announcement {
