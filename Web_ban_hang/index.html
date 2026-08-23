@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mori Objects — Everyday pieces, quietly special</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="announcement">Free shipping on orders over $75 <span>✳</span> made slowly, worn daily</div>
+    <header class="site-header">
+        <button class="menu-button" aria-label="Mở menu"><span></span><span></span></button>
+        <nav class="desktop-nav"><a href="#shop">Shop</a><a href="#story">Our story</a><a href="#journal">Journal</a>
+        </nav>
+        <a class="wordmark" href="#top">mori<span>°</span></a>
+        <div class="header-actions"><button class="icon-button" id="searchToggle"
+                aria-label="Tìm kiếm">⌕</button><button class="icon-button" id="loginToggle" aria-label="Tài khoản">♙</button><button
+                class="cart-button" id="cartToggle">Bag <b id="cartCount">0</b></button></div>
+    </header>
+
+    <main id="top">
+        <section class="collection-intro" id="shop">
+            <div>
+                <p class="eyebrow">The everyday edit / 01</p>
+                <h1>Objects with<br><em>a point of view.</em></h1>
+            </div>
+            <div class="intro-note">
+                <p>Small things, thoughtfully made. A considered collection of wearable forms for your daily rituals.
+                </p><span>Scroll to explore ↓</span>
+            </div>
+        </section>
+        <section class="toolbar">
+            <div class="filter-tabs" id="filterTabs"><button class="active" data-filter="all">All pieces</button><button
+                    data-filter="necklaces">Necklaces</button><button data-filter="rings">Rings</button><button
+                    data-filter="earrings">Earrings</button><button data-filter="bracelets">Bracelets</button></div>
+            <button class="sort-button" id="sortButton">Sort: Featured <span>⌄</span></button>
+            <div class="sort-menu" id="sortMenu"><button data-sort="featured">Featured</button><button
+                    data-sort="low">Price: low to high</button><button data-sort="high">Price: high to low</button>
+            </div>
+        </section>
+        <section class="product-grid" id="productGrid"></section>
+        <section class="story-band" id="story">
+            <div class="story-image"></div>
+            <div class="story-copy">
+                <p class="eyebrow">Made to stay</p>
+                <h2>A little less<br><em>ordinary.</em></h2>
+                <p>We believe the best objects become part of you. Mori is a study in shape, texture and the beautiful
+                    pause between too much and just enough.</p><a class="text-link" href="#journal">Read our story
+                    <span>↗</span></a>
+            </div>
+        </section>
+        <section class="signup" id="journal">
+            <p class="eyebrow">Letters from Mori</p>
+            <h2>Notes, new pieces<br><em>& good things.</em></h2>
+            <form id="signupForm"><input type="email" placeholder="Your email address" aria-label="Địa chỉ email"
+                    required><button type="submit">Join us <span>↗</span></button></form><small id="formMessage">A quiet
+                note in your inbox, once in a while.</small>
+        </section>
+    </main>
+    <footer><a class="wordmark footer-mark" href="#top">mori<span>°</span></a>
+        <div class="footer-links">
+            <div>
+                <p>Explore</p><a href="#shop">All pieces</a><a href="#story">Our story</a><a href="#journal">Journal</a>
+            </div>
+            <div>
+                <p>Say hello</p><a href="mailto:hello@mori.objects">hello@mori.objects</a><a href="#top">Instagram
+                    ↗</a><a href="#top">Pinterest ↗</a>
+            </div>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Mori Objects</span><span>Ho Chi Minh City /
+                Worldwide</span><span>Privacy & terms</span></div>
+    </footer>
+    <div class="search-overlay" id="searchOverlay"><button class="close-search" id="closeSearch">×</button><label
+            for="searchInput">What are you looking for?</label><input id="searchInput" type="search"
+            placeholder="Search pieces...">
+        <p>Try “pearl”, “silver”, or “ring”</p>
+    </div>
+    <div class="login-modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+        <div class="login-box"><button class="close-login" id="closeLogin" aria-label="Đóng đăng nhập">×</button>
+            <p class="eyebrow">Welcome back</p>
+            <h2 id="loginTitle">Sign in to<br><em>your Mori.</em></h2>
+            <form id="loginForm"><label for="username">Tên đăng nhập</label><input id="username" name="username"
+                    type="text" autocomplete="username" required><label for="password">Mật khẩu</label><input
+                    id="password" name="password" type="password" autocomplete="current-password" required>
+                <p class="login-error" id="loginError" role="alert"></p><button class="login-submit"
+                    type="submit">Đăng nhập <span>↗</span></button>
+            </form>
+            <p class="login-note">Tài khoản của bạn sẽ được lưu trong phiên này.</p>
+        </div>
+    </div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="drawer-head">
+            <h2>Your bag <span id="drawerCount">0</span></h2><button id="closeCart">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your bag is waiting for something special.</p>
+        </div>
+        <div class="cart-footer">
+            <div><span>Subtotal</span><strong id="cartTotal">$0.00</strong></div><button
+                class="checkout-button" id="checkoutButton">Checkout <span>↗</span></button>
+        </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
