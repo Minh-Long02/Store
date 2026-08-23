@@ -1,7 +1,13 @@
 const bag = JSON.parse(localStorage.getItem('moriBag') || '[]');
 const subtotal = bag.reduce((sum, product) => sum + product.price, 0);
-const shipping = subtotal >= 75 || subtotal === 0 ? 0 : 8;
+let shipping = 0;
 const money = value => `$${value.toFixed(2)}`;
+const country = document.getElementById('country');
+const updateShipping = () => {
+    shipping = country.value ? Number(country.value) : 0;
+    document.getElementById('summaryShipping').textContent = country.value ? money(shipping) : 'Select country';
+    document.getElementById('summaryTotal').textContent = money(subtotal + shipping);
+};
 const completeOrder = () => {
     localStorage.removeItem('moriBag');
     document.body.classList.add('order-complete');
@@ -11,15 +17,21 @@ const completeOrder = () => {
 
 document.getElementById('summaryCount').textContent = bag.length;
 document.getElementById('summarySubtotal').textContent = money(subtotal);
-document.getElementById('summaryShipping').textContent = shipping ? money(shipping) : 'Free';
-document.getElementById('summaryTotal').textContent = money(subtotal + shipping);
+document.getElementById('summaryShipping').textContent = 'Select country';
+document.getElementById('summaryTotal').textContent = money(subtotal);
 document.getElementById('summaryItems').innerHTML = bag.length ? bag.map(product => `<div class="summary-item"><img src="${product.image}" alt="${product.name}"><div><h3>${product.name}</h3><p>${product.meta}</p></div><strong>${money(product.price)}</strong></div>`).join('') : '<p class="empty-cart">Your bag is empty. Add a piece before checking out.</p>';
+country.addEventListener('change', updateShipping);
 
 const form = document.getElementById('paymentForm');
 form.addEventListener('submit', event => {
     event.preventDefault();
     if (!bag.length) {
         document.getElementById('checkoutError').textContent = 'Vui lòng thêm sản phẩm trước khi đặt hàng.';
+        return;
+    }
+    if (!country.value) {
+        document.getElementById('checkoutError').textContent = 'Vui lòng chọn quốc gia để tính phí vận chuyển.';
+        country.focus();
         return;
     }
     completeOrder();

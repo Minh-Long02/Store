@@ -85,6 +85,20 @@
      border-color: var(--ink)
  }
 
+ .field select {
+     height: 40px;
+     background: transparent;
+     border: 0;
+     border-bottom: 1px solid var(--line);
+     outline: none;
+     font: 15px var(--sans);
+     color: var(--ink);
+ }
+
+ .field select:focus {
+     border-color: var(--ink)
+ }
+
  .payment-method {
      margin-top: 10px
  }
@@ -209,6 +223,14 @@
      font: 10px var(--mono);
      margin-top: 32px;
      opacity: .6
+ }
+
+ .shipping-note a {
+     display: block;
+     color: var(--ink);
+     margin-top: 9px;
+     text-decoration: underline;
+     text-underline-offset: 3px;
  }
 
  .order-success {

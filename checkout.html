@@ -26,6 +26,26 @@
             <form id="paymentForm">
                 <div class="field full"><label for="fullName">Họ và tên</label><input id="fullName" required
                         autocomplete="name"></div>
+                <div class="field full"><label for="country">Quốc gia</label><select id="country" required>
+                    <option value="" selected disabled>Chọn quốc gia</option>
+                    <option value="10">United States (US)</option>
+                    <option value="10">United Kingdom (UK)</option>
+                    <option value="10">Singapore</option>
+                    <option value="12">Canada</option>
+                    <option value="12">Australia</option>
+                    <option value="12">New Zealand</option>
+                    <option value="12">Saudi Arabia</option>
+                    <option value="12">Japan</option>
+                    <option value="12">South Korea</option>
+                    <option value="12">Hong Kong</option>
+                    <option value="9">Thailand</option>
+                    <option value="9">Malaysia</option>
+                    <option value="9">Philippines</option>
+                    <option value="9">Indonesia</option>
+                    <option value="9">Brunei</option>
+                    <option value="9">India</option>
+                    <option value="16">European Countries and Other Regions</option>
+                    </select></div>
                 <div class="field"><label for="email">Email</label><input id="email" type="email" required
                         autocomplete="email"></div>
                 <div class="field"><label for="phone">Số điện thoại</label><input id="phone" type="tel" required
@@ -53,7 +73,7 @@
                 <div><span>Shipping</span><strong id="summaryShipping">$0.00</strong></div>
                 <div class="total-line"><span>Total</span><strong id="summaryTotal">$0.00</strong></div>
             </div>
-            <p class="shipping-note">Free shipping on orders over $75</p>
+            <p class="shipping-note">Shipping fees vary by destination. <a href="shipping.html">View shipping rates ↗</a></p>
         </aside>
     </main>
     <div class="order-success" id="orderSuccess">

@@ -10,9 +10,10 @@ const products = [
 ];
 const savedProducts = JSON.parse(localStorage.getItem('moriProducts') || 'null');
 if (savedProducts) products.splice(0, products.length, ...savedProducts);
-const siteContent = JSON.parse(localStorage.getItem('moriContent') || 'null') || { announcement: 'Free shipping on orders over $75 ✳ made slowly, worn daily', about: 'We believe the best objects become part of you. Chalice Craft is a study in shape, texture and the beautiful pause between too much and just enough.', email: 'bychalice.craft@gmail.com', copyright: '© 2026 Chalice Craft', location: 'Ho Chi Minh City / Worldwide', legal: 'Privacy & terms' };
+const siteContent = JSON.parse(localStorage.getItem('moriContent') || 'null') || { announcement: 'Worldwide shipping ✳ rates calculated at checkout', about: 'We believe the best objects become part of you. Chalice Craft is a study in shape, texture and the beautiful pause between too much and just enough.', email: 'bychalice.craft@gmail.com', copyright: '© 2026 Chalice Craft', location: 'Ho Chi Minh City / Worldwide', legal: 'Privacy & terms' };
 siteContent.about = siteContent.about.replace(/\bMori\b/g, 'Chalice Craft').replace(/\bMori Objects\b/g, 'Chalice Craft');
 siteContent.copyright = siteContent.copyright.replace(/\bMori Objects\b/g, 'Chalice Craft');
+if (siteContent.announcement === 'Free shipping on orders over $75 ✳ made slowly, worn daily') siteContent.announcement = 'Worldwide shipping ✳ rates calculated at checkout';
 if (siteContent.email === 'hello@mori.objects') siteContent.email = 'bychalice.craft@gmail.com';
 let currentFilter = 'all', currentSort = 'featured', bag = [];
 const grid = document.getElementById('productGrid');

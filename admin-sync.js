@@ -2,6 +2,7 @@ const content = JSON.parse(localStorage.getItem('moriContent') || 'null');
 if (content) {
     content.about = content.about.replace(/\bMori\b/g, 'Chalice Craft').replace(/\bMori Objects\b/g, 'Chalice Craft');
     content.copyright = content.copyright.replace(/\bMori Objects\b/g, 'Chalice Craft');
+    if (content.announcement === 'Free shipping on orders over $75 ✳ made slowly, worn daily') content.announcement = 'Worldwide shipping ✳ rates calculated at checkout';
     if (content.email === 'hello@mori.objects') content.email = 'bychalice.craft@gmail.com';
 }
 const galleryDefault = ['Image/HRbanner_Chalice%20craft.jpg', 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=85', 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85'];
