@@ -3,7 +3,7 @@
  }
 
  .checkout-page {
-     background: var(--paper);
+     background: white;
      min-height: 100vh
  }
 
@@ -142,9 +142,10 @@
  }
 
  .order-summary {
-     background: #e5e0d5;
+     background: white;
      padding: 75px 5vw 60px;
-     position: relative
+     position: relative;
+     border: 1px solid #ccc; 
  }
 
  .order-summary h2 {

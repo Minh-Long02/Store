@@ -1,5 +1,5 @@
 .admin-page {
-    background: var(--paper);
+    background: white;
     min-height: 100vh
 }
 
@@ -190,7 +190,7 @@
 
 .product-form {
     position: relative;
-    background: var(--paper);
+    background: white;
     width: min(500px, 100%);
     padding: 45px;
     display: grid;
