@@ -1,6 +1,8 @@
 {
 const duplicateRegisterForms = document.querySelectorAll('#loginModal form#registerForm');
 if (duplicateRegisterForms.length > 1) duplicateRegisterForms[0].remove();
+const duplicateAccountSwitches = document.querySelectorAll('#loginModal .account-switch');
+if (duplicateAccountSwitches.length > 1) duplicateAccountSwitches[0].remove();
 const registerForm = document.getElementById('registerForm');
 const registerError = document.getElementById('signupError');
 const accountSwitch = document.getElementById('accountSwitch');
@@ -8,6 +10,7 @@ const accountPrompt = document.getElementById('accountPrompt');
 const countrySelect = document.getElementById('signupCountry');
 const phoneCode = document.getElementById('phoneCode');
 function showRegister(show) { loginForm.hidden = show; registerForm.hidden = !show; accountPrompt.textContent = show ? 'Already have an account?' : 'Do not have an account?'; accountSwitch.textContent = show ? 'Sign in' : 'Sign up'; (show ? document.getElementById('signupUsername') : document.getElementById('username')).focus(); }
+accountSwitch.addEventListener('click', event => { event.preventDefault(); event.stopImmediatePropagation(); showRegister(registerForm.hidden); }, true);
 countrySelect.addEventListener('change', () => { phoneCode.textContent = countrySelect.selectedOptions[0].dataset.code; });
 registerForm.addEventListener('submit', event => { event.preventDefault(); const username = document.getElementById('signupUsername').value.trim(); const phone = document.getElementById('signupPhone').value.trim(); const password = document.getElementById('signupPassword').value; const confirmation = document.getElementById('signupConfirmPassword').value; const accounts = JSON.parse(localStorage.getItem('moriAccounts') || '[]'); if (accounts.some(account => account.username.toLowerCase() === username.toLowerCase())) { registerError.textContent = 'That username is already taken.'; return; } if (password !== confirmation) { registerError.textContent = 'Passwords do not match.'; return; } accounts.push({ username, phone: `${phoneCode.textContent} ${phone}`, country: countrySelect.value, password }); localStorage.setItem('moriAccounts', JSON.stringify(accounts)); sessionStorage.setItem('moriLoggedIn', 'true'); sessionStorage.setItem('moriRole', 'user'); loginToggle.textContent = '●'; loginToggle.setAttribute('aria-label', 'Signed in'); closeLogin(); });
 }
