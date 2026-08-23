@@ -26,11 +26,11 @@ const form = document.getElementById('paymentForm');
 form.addEventListener('submit', event => {
     event.preventDefault();
     if (!bag.length) {
-        document.getElementById('checkoutError').textContent = 'Vui lòng thêm sản phẩm trước khi đặt hàng.';
+        document.getElementById('checkoutError').textContent = 'Please add a product before placing your order.';
         return;
     }
     if (!country.value) {
-        document.getElementById('checkoutError').textContent = 'Vui lòng chọn quốc gia để tính phí vận chuyển.';
+        document.getElementById('checkoutError').textContent = 'Please select a country to calculate shipping.';
         country.focus();
         return;
     }
@@ -40,7 +40,7 @@ form.addEventListener('submit', event => {
 const paymentMethod = document.querySelector('.payment-method');
 const paypalOption = document.createElement('label');
 paypalOption.className = 'payment-option';
-paypalOption.innerHTML = '<input type="radio" name="payment" value="paypal" id="paypalPayment"> <span>Thanh toán qua PayPal</span><b>PAYPAL</b>';
+paypalOption.innerHTML = '<input type="radio" name="payment" value="paypal" id="paypalPayment"> <span>Pay with PayPal</span><b>PAYPAL</b>';
 const paypalContainer = document.createElement('div');
 paypalContainer.id = 'paypal-button-container';
 paypalContainer.hidden = true;
@@ -57,7 +57,7 @@ if (window.paypal && bag.length) {
         style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'paypal' },
         onClick: () => {
             if (!form.reportValidity()) {
-                document.getElementById('checkoutError').textContent = 'Vui lòng điền đủ thông tin giao hàng trước khi thanh toán.';
+                document.getElementById('checkoutError').textContent = 'Please complete your shipping details before payment.';
                 return false;
             }
             return true;
@@ -66,7 +66,7 @@ if (window.paypal && bag.length) {
         onApprove: (data, actions) => actions.order.capture().then(() => {
             completeOrder();
         }),
-        onCancel: () => { document.getElementById('checkoutError').textContent = 'Bạn đã hủy thanh toán PayPal.'; },
-        onError: error => { console.error('PayPal error:', error); document.getElementById('checkoutError').textContent = 'Không thể hoàn tất thanh toán PayPal. Hãy kiểm tra đúng Sandbox Personal Account và thử lại.'; }
+        onCancel: () => { document.getElementById('checkoutError').textContent = 'PayPal payment was cancelled.'; },
+        onError: error => { console.error('PayPal error:', error); document.getElementById('checkoutError').textContent = 'PayPal payment could not be completed. Please check your Sandbox Personal Account and try again.'; }
     }).render('#paypal-button-container');
 }

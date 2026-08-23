@@ -510,7 +510,8 @@ footer {
 .search-overlay {
     position: fixed;
     inset: 0;
-    background: var(--lime);
+    background: var(--paper);
+    color: var(--ink);
     z-index: 20;
     padding: 13vh 12vw;
     display: none
@@ -551,6 +552,58 @@ footer {
     margin-top: 22px
 }
 
+.search-results {
+    display: grid;
+    gap: 0;
+    max-width: 760px;
+    margin-top: 42px;
+    border-top: 1px solid var(--line);
+}
+
+.search-result {
+    display: grid;
+    grid-template-columns: 62px 1fr auto;
+    gap: 15px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+}
+
+.search-result:hover {
+    background: rgba(17, 45, 42, .06);
+}
+
+.search-result img {
+    width: 62px;
+    height: 62px;
+    object-fit: cover;
+}
+
+.search-result strong {
+    display: block;
+    font: 500 18px var(--serif);
+    margin-bottom: 5px;
+}
+
+.search-result small, .search-result b {
+    font: 9px var(--mono);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    opacity: .6;
+}
+
+.search-result b {
+    opacity: 1;
+    white-space: nowrap;
+}
+
+.search-empty {
+    padding: 18px 0;
+    font: 11px var(--mono);
+    opacity: .65;
+}
+
 .login-modal {
     position: fixed;
     inset: 0;
@@ -579,6 +632,18 @@ footer {
 .login-box label { font: 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; margin: 0 0 8px }
 .login-box input { height: 40px; background: transparent; border: 0; border-bottom: 1px solid var(--line); outline: 0; margin-bottom: 23px; color: var(--ink); font: 16px var(--sans) }
 .login-box input:focus { border-color: var(--ink) }
+.login-box select { height: 40px; background: transparent; border: 0; border-bottom: 1px solid var(--line); outline: 0; margin-bottom: 23px; color: var(--ink); font: 15px var(--sans) }
+.login-box select:focus { border-color: var(--ink) }
+.phone-field { display: flex; align-items: center; border-bottom: 1px solid var(--line); margin-bottom: 23px }
+.phone-field:focus-within { border-color: var(--ink) }
+.phone-field span { font: 15px var(--sans); padding-right: 10px; opacity: .65 }
+.phone-field input { flex: 1; border-bottom: 0; margin-bottom: 0 }
+.terms-check { display: flex !important; flex-direction: row; align-items: flex-start; gap: 9px; text-transform: none !important; letter-spacing: 0 !important; line-height: 1.4; margin: 0 0 18px !important; }
+.terms-check input { width: 15px; height: 15px; margin: 1px 0 0; accent-color: var(--ink); }
+.terms-check span { font: 11px var(--sans); }
+.account-switch { font: 11px var(--mono); text-align: center; margin: 20px 0 0; }
+.account-switch button { border-bottom: 1px solid var(--ink); text-transform: uppercase; font: inherit; }
+.login-box form[hidden] { display: none; }
 .login-error { min-height: 18px; color: var(--coral); font: 11px var(--mono); margin: 0 0 10px }
 .login-submit { background: var(--ink); color: var(--paper); padding: 16px; font: 11px var(--mono); letter-spacing: .1em; text-transform: uppercase }
 .login-submit span { margin-left: 12px }

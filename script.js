@@ -1,3 +1,16 @@
+{
+const duplicateRegisterForms = document.querySelectorAll('#loginModal form#registerForm');
+if (duplicateRegisterForms.length > 1) duplicateRegisterForms[0].remove();
+const registerForm = document.getElementById('registerForm');
+const registerError = document.getElementById('signupError');
+const accountSwitch = document.getElementById('accountSwitch');
+const accountPrompt = document.getElementById('accountPrompt');
+const countrySelect = document.getElementById('signupCountry');
+const phoneCode = document.getElementById('phoneCode');
+function showRegister(show) { loginForm.hidden = show; registerForm.hidden = !show; accountPrompt.textContent = show ? 'Already have an account?' : 'Do not have an account?'; accountSwitch.textContent = show ? 'Sign in' : 'Sign up'; (show ? document.getElementById('signupUsername') : document.getElementById('username')).focus(); }
+countrySelect.addEventListener('change', () => { phoneCode.textContent = countrySelect.selectedOptions[0].dataset.code; });
+registerForm.addEventListener('submit', event => { event.preventDefault(); const username = document.getElementById('signupUsername').value.trim(); const phone = document.getElementById('signupPhone').value.trim(); const password = document.getElementById('signupPassword').value; const confirmation = document.getElementById('signupConfirmPassword').value; const accounts = JSON.parse(localStorage.getItem('moriAccounts') || '[]'); if (accounts.some(account => account.username.toLowerCase() === username.toLowerCase())) { registerError.textContent = 'That username is already taken.'; return; } if (password !== confirmation) { registerError.textContent = 'Passwords do not match.'; return; } accounts.push({ username, phone: `${phoneCode.textContent} ${phone}`, country: countrySelect.value, password }); localStorage.setItem('moriAccounts', JSON.stringify(accounts)); sessionStorage.setItem('moriLoggedIn', 'true'); sessionStorage.setItem('moriRole', 'user'); loginToggle.textContent = '●'; loginToggle.setAttribute('aria-label', 'Signed in'); closeLogin(); });
+}
 const products = [
     { name: 'Serein Pendant', type: 'necklaces', meta: 'Recycled silver / 18”', price: 6, image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=700&q=85', tag: 'New' },
     { name: 'Tide Pool Ring', type: 'rings', meta: 'Sterling silver', price: 4, image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=85' },
@@ -15,8 +28,33 @@ siteContent.about = siteContent.about.replace(/\bMori\b/g, 'Chalice Craft').repl
 siteContent.copyright = siteContent.copyright.replace(/\bMori Objects\b/g, 'Chalice Craft');
 if (siteContent.announcement === 'Free shipping on orders over $75 ✳ made slowly, worn daily') siteContent.announcement = 'Worldwide shipping ✳ rates calculated at checkout';
 if (siteContent.email === 'hello@mori.objects') siteContent.email = 'bychalice.craft@gmail.com';
+if (localStorage.getItem('moriRole') === 'admin') {
+    sessionStorage.setItem('moriLoggedIn', 'true');
+    sessionStorage.setItem('moriRole', 'admin');
+}
 let currentFilter = 'all', currentSort = 'featured', currentPage = 1, bag = [];
 const grid = document.getElementById('productGrid');
+const searchField = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+function renderSearchResults(query = '') {
+    const keyword = query.trim().toLowerCase();
+    if (!keyword) { searchResults.innerHTML = ''; return; }
+    const matches = products.filter(product => [product.name, product.type, product.meta, product.tag].filter(Boolean).join(' ').toLowerCase().includes(keyword));
+    searchResults.innerHTML = matches.length ? matches.map(product => `<button class="search-result" data-product-index="${products.indexOf(product)}"><img src="${product.image}" alt="${product.name}"><span><strong>${product.name}</strong><small>${product.meta}</small></span><b>$${product.price.toFixed(2)}</b></button>`).join('') : '<p class="search-empty">No pieces found. Try another keyword.</p>';
+}
+searchField.addEventListener('input', () => renderSearchResults(searchField.value));
+searchResults.addEventListener('click', event => {
+    const result = event.target.closest('[data-product-index]');
+    if (!result) return;
+    currentFilter = 'all';
+    currentPage = Math.floor(Number(result.dataset.productIndex) / 8) + 1;
+    document.querySelectorAll('#filterTabs button').forEach(button => button.classList.toggle('active', button.dataset.filter === 'all'));
+    render();
+    searchOverlay.classList.remove('open');
+    searchField.value = '';
+    searchResults.innerHTML = '';
+    grid.scrollIntoView({ behavior: 'smooth' });
+});
 function render() {
     let list = products.filter(p => currentFilter === 'all' || p.type === currentFilter);
     if (currentSort === 'low') list.sort((a, b) => a.price - b.price);

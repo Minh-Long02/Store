@@ -24,10 +24,10 @@
             <p class="eyebrow">01 / Shipping details</p>
             <h1>Almost<br><em>yours.</em></h1>
             <form id="paymentForm">
-                <div class="field full"><label for="fullName">Họ và tên</label><input id="fullName" required
+                <div class="field full"><label for="fullName">Full name</label><input id="fullName" required
                         autocomplete="name"></div>
-                <div class="field full"><label for="country">Quốc gia</label><select id="country" required>
-                    <option value="" selected disabled>Chọn quốc gia</option>
+                <div class="field full"><label for="country">Country</label><select id="country" required>
+                    <option value="" selected disabled>Select country</option>
                     <option value="10">United States (US)</option>
                     <option value="10">United Kingdom (UK)</option>
                     <option value="10">Singapore</option>
@@ -48,19 +48,18 @@
                     </select></div>
                 <div class="field"><label for="email">Email</label><input id="email" type="email" required
                         autocomplete="email"></div>
-                <div class="field"><label for="phone">Số điện thoại</label><input id="phone" type="tel" required
+                <div class="field"><label for="phone">Phone number</label><input id="phone" type="tel" required
                         autocomplete="tel"></div>
-                <div class="field full"><label for="address">Địa chỉ nhận hàng</label><input id="address" required
+                <div class="field full"><label for="address">Shipping address</label><input id="address" required
                         autocomplete="street-address"></div>
-                <div class="field"><label for="city">Tỉnh / Thành phố</label><input id="city" required
+                <div class="field"><label for="city">State / City</label><input id="city" required
                         autocomplete="address-level2"></div>
-                <div class="field"><label for="postal">Mã bưu chính</label><input id="postal" inputmode="numeric"
+                <div class="field"><label for="postal">Postal code</label><input id="postal" inputmode="numeric"
                         required></div>
-                <div class="payment-method full"><label>Phương thức thanh toán</label><label
-                        class="payment-option"><input type="radio" name="payment" checked> <span>Thanh toán khi nhận
-                            hàng</span><b>COD</b></label><label class="payment-option"><input type="radio"
-                            name="payment"> <span>Thẻ tín dụng / ghi nợ</span><b>VISA</b></label></div>
-                <p class="checkout-error" id="checkoutError"></p><button class="place-order" type="submit">Đặt hàng
+                <div class="payment-method full"><label>Payment method</label><label
+                        class="payment-option"><input type="radio" name="payment" checked> <span>Cash on delivery</span><b>COD</b></label><label class="payment-option"><input type="radio"
+                            name="payment"> <span>Credit / debit card</span><b>VISA</b></label></div>
+                <p class="checkout-error" id="checkoutError"></p><button class="place-order" type="submit">Place order
                     <span>↗</span></button>
             </form>
         </section>

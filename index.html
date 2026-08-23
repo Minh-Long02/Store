@@ -26,12 +26,12 @@
     </aside>
     <div class="announcement" id="announcementBar">Worldwide shipping <span>✳</span> rates calculated at checkout</div>
     <header class="site-header">
-        <button class="menu-button" aria-label="Mở menu"><span></span><span></span></button>
+        <button class="menu-button" aria-label="Open menu"><span></span><span></span></button>
         <nav class="desktop-nav"><a href="#shop">Shop</a><a href="#story">Our story</a><a href="#journal">Journal</a>
         </nav>
         <a class="wordmark" href="#top">Chalice Craft<span>°</span></a>
         <div class="header-actions"><button class="icon-button" id="searchToggle"
-                aria-label="Tìm kiếm">⌕</button><button class="icon-button" id="loginToggle" aria-label="Tài khoản">♙</button><button
+                aria-label="Search">⌕</button><button class="icon-button" id="loginToggle" aria-label="Account">♙</button><button
                 class="cart-button" id="cartToggle">Bag <b id="cartCount">0</b></button></div>
     </header>
 
@@ -48,7 +48,7 @@
             <div class="intro-visual" aria-label="Chalice Craft jewellery editorial"></div>
         </section>
         <section class="about-home" id="about-us">
-            <div class="about-home-label"><p class="eyebrow">About us / 02</p><span>Chalice Craft ♡</span><div class="about-gallery" id="aboutGallery"><img id="aboutGalleryImage" src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft product"><button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Ảnh trước">←</button><button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Ảnh tiếp theo">→</button><div class="gallery-dots" id="galleryDots"></div></div></div>
+            <div class="about-home-label"><p class="eyebrow">About us / 02</p><span id="aboutTitle">Chalice Craft ♡</span><div class="about-gallery" id="aboutGallery"><img id="aboutGalleryImage" src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft product"><button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Previous image">←</button><button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Next image">→</button><div class="gallery-dots" id="galleryDots"></div></div></div>
             <div class="about-home-copy" id="aboutBody"><p>Welcome to Chalice Craft ♡</p><p>Chalice Craft is a small studio inspired by our love for ceramics and handmade creations. We make unique jewelry, accessories, and little ceramic pieces by hand.</p><p>Our pieces are carefully crafted with attention to detail and thoroughly glazed on both sides. Each piece has its own little differences and character, making every creation truly one of a kind.</p><p>We always want you to have the best experience shopping with us. Your feedback helps us grow, so feel free to reach out via email at <a href="mailto:bychalice.craft@gmail.com">bychalice.craft@gmail.com</a> with any questions or suggestions.</p><p>Thank you for supporting handmade ♡</p></div>
         </section>
         <section class="toolbar">
@@ -72,7 +72,7 @@
         <section class="signup" id="journal">
             <p class="eyebrow">Letters from Chalice Craft</p>
             <h2>Notes, new pieces<br><em>& good things.</em></h2>
-            <form id="signupForm"><input type="email" placeholder="Your email address" aria-label="Địa chỉ email"
+                <form id="signupForm"><input type="email" placeholder="Your email address" aria-label="Email address"
                     required><button type="submit">Join us <span>↗</span></button></form><small id="formMessage">A quiet
                 note in your inbox, once in a while.</small>
         </section>
@@ -101,18 +101,21 @@
             for="searchInput">What are you looking for?</label><input id="searchInput" type="search"
             placeholder="Search pieces...">
         <p>Try “pearl”, “silver”, or “ring”</p>
+        <div class="search-results" id="searchResults" aria-live="polite"></div>
     </div>
     <div class="login-modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-        <div class="login-box"><button class="close-login" id="closeLogin" aria-label="Đóng đăng nhập">×</button>
+        <div class="login-box"><button class="close-login" id="closeLogin" aria-label="Close account dialog">×</button>
             <p class="eyebrow">Welcome back</p>
             <h2 id="loginTitle">Sign in to<br><em>your Chalice Craft.</em></h2>
-            <form id="loginForm"><label for="username">Tên đăng nhập</label><input id="username" name="username"
-                    type="text" autocomplete="username" required><label for="password">Mật khẩu</label><input
+            <form id="loginForm"><label for="username">Username</label><input id="username" name="username"
+                    type="text" autocomplete="username" required><label for="password">Password</label><input
                     id="password" name="password" type="password" autocomplete="current-password" required>
                 <p class="login-error" id="loginError" role="alert"></p><button class="login-submit"
-                    type="submit">Đăng nhập <span>↗</span></button>
+                    type="submit">Sign in <span>↗</span></button>
             </form>
-            <p class="login-note">Tài khoản của bạn sẽ được lưu trong phiên này.</p>
+            <form id="registerForm" hidden><label for="signupUsername">Tên tài khoản</label><input id="signupUsername" type="text" autocomplete="username" required><label for="signupPhone">Số điện thoại</label><div class="phone-field"><span id="phoneCode">+84</span><input id="signupPhone" type="tel" autocomplete="tel" inputmode="tel" required></div><label for="signupCountry">Quốc gia</label><select id="signupCountry" required><option value="VN" data-code="+84" selected>Việt Nam</option><option value="US" data-code="+1">United States</option><option value="GB" data-code="+44">United Kingdom</option><option value="SG" data-code="+65">Singapore</option><option value="CA" data-code="+1">Canada</option><option value="AU" data-code="+61">Australia</option><option value="JP" data-code="+81">Japan</option><option value="KR" data-code="+82">South Korea</option><option value="TH" data-code="+66">Thailand</option><option value="MY" data-code="+60">Malaysia</option><option value="PH" data-code="+63">Philippines</option><option value="ID" data-code="+62">Indonesia</option><option value="IN" data-code="+91">India</option><option value="OTHER" data-code="+">Other country</option></select><label for="signupPassword">Mật khẩu</label><input id="signupPassword" type="password" autocomplete="new-password" minlength="6" required><label for="signupConfirmPassword">Xác nhận lại mật khẩu</label><input id="signupConfirmPassword" type="password" autocomplete="new-password" minlength="6" required><label class="terms-check"><input id="signupTerms" type="checkbox" required><span>Tôi đồng ý với điều khoản sử dụng và chính sách bảo mật của Chalice Craft.</span></label><p class="login-error" id="signupError" role="alert"></p><button class="login-submit" type="submit">Tạo tài khoản <span>↗</span></button></form><p class="account-switch"><span id="accountPrompt">Chưa có tài khoản?</span> <button id="accountSwitch" type="button" onclick="document.getElementById('loginForm').hidden = true; document.getElementById('registerForm').hidden = false; document.getElementById('signupUsername').focus();">Đăng ký</button></p>
+                <form id="registerForm" hidden><label for="signupUsername">Username</label><input id="signupUsername" type="text" autocomplete="username" required><label for="signupPhone">Phone number</label><div class="phone-field"><span id="phoneCode">+84</span><input id="signupPhone" type="tel" autocomplete="tel" inputmode="tel" required></div><label for="signupCountry">Country</label><select id="signupCountry" required><option value="VN" data-code="+84" selected>Vietnam</option><option value="US" data-code="+1">United States</option><option value="GB" data-code="+44">United Kingdom</option><option value="SG" data-code="+65">Singapore</option><option value="CA" data-code="+1">Canada</option><option value="AU" data-code="+61">Australia</option><option value="JP" data-code="+81">Japan</option><option value="KR" data-code="+82">South Korea</option><option value="TH" data-code="+66">Thailand</option><option value="MY" data-code="+60">Malaysia</option><option value="PH" data-code="+63">Philippines</option><option value="ID" data-code="+62">Indonesia</option><option value="IN" data-code="+91">India</option><option value="OTHER" data-code="+">Other country</option></select><label for="signupPassword">Password</label><input id="signupPassword" type="password" autocomplete="new-password" minlength="6" required><label for="signupConfirmPassword">Confirm password</label><input id="signupConfirmPassword" type="password" autocomplete="new-password" minlength="6" required><label class="terms-check"><input id="signupTerms" type="checkbox" required><span>I agree to Chalice Craft's Terms of Use and Privacy Policy.</span></label><p class="login-error" id="signupError" role="alert"></p><button class="login-submit" type="submit">Create account <span>↗</span></button></form><p class="account-switch"><span id="accountPrompt">Don't have an account?</span> <button id="accountSwitch" type="button" onclick="document.getElementById('loginForm').hidden = true; document.getElementById('registerForm').hidden = false; document.getElementById('signupUsername').focus();">Sign up</button></p>
+            <p class="login-note">Your account will be saved in this browser.</p>
         </div>
     </div>
     <aside class="cart-drawer" id="cartDrawer">
