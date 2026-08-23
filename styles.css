@@ -28,7 +28,7 @@ html {
 
 body {
     margin: 0;
-    background: var(--paper);
+    background: white;
     color: var(--ink);
     font-family: var(--sans);
     font-size: 14px
@@ -146,7 +146,7 @@ a {
 }
 
 .menu-button {
-    display: none
+    background-color: #000000;
 }
 
 .collection-intro {
@@ -1050,7 +1050,8 @@ footer {
         display: flex;
         flex-direction: column;
         gap: 5px;
-        width: 23px
+        width: 23px;
+        color: black;
     }
 
     .menu-button span {
@@ -1060,7 +1061,8 @@ footer {
     }
 
     .wordmark {
-        font-size: 32px
+        display: block;
+        height: 89px;
     }
 
     .header-actions {
@@ -1345,7 +1347,7 @@ footer {
 
     .announcement, .site-header, main, footer {
         margin-left: 194px;
-        
+
     }
 
     .announcement {

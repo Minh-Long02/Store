@@ -273,10 +273,13 @@
      .checkout-header {
          height: 72px;
          padding: 0 20px
+         
+         /* padding: 41px */
      }
 
      .checkout-header .wordmark {
-         font-size: 32px
+         font-size: 32px;
+         padding-top: 25px
      }
 
      .back-link {
