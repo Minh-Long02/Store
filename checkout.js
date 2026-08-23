@@ -3,6 +3,14 @@ const subtotal = bag.reduce((sum, product) => sum + product.price, 0);
 let shipping = 0;
 const money = value => `$${value.toFixed(2)}`;
 const country = document.getElementById('country');
+const savedUser = JSON.parse(localStorage.getItem('moriCurrentUser') || 'null');
+const countryNames = { VN: 'Vietnam', US: 'United States (US)', GB: 'United Kingdom (UK)', SG: 'Singapore', CA: 'Canada', AU: 'Australia', JP: 'Japan', KR: 'South Korea', TH: 'Thailand', MY: 'Malaysia', PH: 'Philippines', ID: 'Indonesia', IN: 'India', OTHER: 'European Countries and Other Regions' };
+if (savedUser) {
+    document.getElementById('fullName').value = savedUser.username || '';
+    document.getElementById('phone').value = savedUser.phone || '';
+    const countryOption = Array.from(country.options).find(option => option.textContent.trim() === countryNames[savedUser.country]);
+    if (countryOption) country.value = countryOption.value;
+}
 const updateShipping = () => {
     shipping = country.value ? Number(country.value) : 0;
     document.getElementById('summaryShipping').textContent = country.value ? money(shipping) : 'Select country';
@@ -21,6 +29,7 @@ document.getElementById('summaryShipping').textContent = 'Select country';
 document.getElementById('summaryTotal').textContent = money(subtotal);
 document.getElementById('summaryItems').innerHTML = bag.length ? bag.map(product => `<div class="summary-item"><img src="${product.image}" alt="${product.name}"><div><h3>${product.name}</h3><p>${product.meta}</p></div><strong>${money(product.price)}</strong></div>`).join('') : '<p class="empty-cart">Your bag is empty. Add a piece before checking out.</p>';
 country.addEventListener('change', updateShipping);
+if (savedUser && country.value) updateShipping();
 
 const form = document.getElementById('paymentForm');
 form.addEventListener('submit', event => {

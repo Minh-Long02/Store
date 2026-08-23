@@ -401,7 +401,7 @@ a {
 }
 
 .signup {
-    padding: 110px 8vw 118px;
+    padding: 70px 8vw 75px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -649,6 +649,31 @@ footer {
 .login-submit span { margin-left: 12px }
 .login-note { font: 10px var(--mono); opacity: .55; margin: 20px 0 0; text-align: center }
 
+.toast {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 250px;
+    padding: 15px 16px;
+    background: var(--ink);
+    color: var(--paper);
+    box-shadow: 0 12px 30px rgba(17, 45, 42, .2);
+    transform: translateY(130%);
+    opacity: 0;
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-mark { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--lime); color: var(--ink); font: 12px var(--mono); }
+.toast-message { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.toast button { margin-left: auto; color: inherit; font-size: 18px; line-height: 1; }
+
+@media (max-width: 600px) { .toast { right: 16px; bottom: 16px; left: 16px; min-width: 0; } }
+
 .cart-drawer {
     position: fixed;
     z-index: 15;
@@ -667,6 +692,26 @@ footer {
 .cart-drawer.open {
     transform: translateX(0)
 }
+
+.profile-drawer {
+    position: fixed;
+    z-index: 16;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: min(420px, 100%);
+    background: var(--paper);
+    transform: translateX(100%);
+    transition: transform .35s;
+    padding: 30px;
+}
+
+.profile-drawer.open { transform: translateX(0); }
+.profile-form { display: flex; flex-direction: column; padding-top: 30px; }
+.profile-form label { font: 10px var(--mono); text-transform: uppercase; letter-spacing: .1em; margin: 0 0 8px; }
+.profile-form input, .profile-form select { height: 40px; background: transparent; border: 0; border-bottom: 1px solid var(--line); outline: 0; margin-bottom: 23px; color: var(--ink); font: 15px var(--sans); }
+.profile-form input:focus, .profile-form select:focus { border-color: var(--ink); }
+.profile-error { min-height: 18px; color: var(--coral); font: 11px var(--mono); margin: 0 0 10px; }
 
 .drawer-head {
     display: flex;
@@ -905,7 +950,7 @@ footer {
     }
 
     .signup {
-        padding: 80px 22px
+        padding: 55px 22px 60px
     }
 
     .signup h2 {
