@@ -19,7 +19,7 @@
         <a class="sidebar-logo" href="#top"><img src="Image/Icon logo brand.jpg" alt="Chalice Craft" onerror="this.style.display='none'"><span>Chalice craft</span></a>
         <nav class="sidebar-nav" aria-label="Shop collections">
             <a href="#shop">GREEN RING DROP</a><a href="#journal">new in ♡</a>
-            <div class="sidebar-filter" id="filterTabs"><button class="active" data-filter="all">SHOP ALL</button><button data-filter="necklaces">necklaces</button><button data-filter="bracelets">bracelets</button><button data-filter="rings">rings</button><button data-filter="earrings">earrings</button></div>
+            <div class="sidebar-filter" id="filterTabs"><p class="sidebar-filter-title">Category</p><button class="active" data-filter="all" onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">SHOP ALL</button><button data-filter="necklaces" onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">necklaces</button><button data-filter="bracelets" onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">bracelets</button><button data-filter="rings" onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">rings</button><button data-filter="earrings" onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">earrings</button></div>
             <a href="#shop">hair clips</a><a href="#story">REWORKED VINTAGE DROP</a>
         </nav>
         <div class="sidebar-foot"><span>made slowly, worn daily</span><span>↓ scroll to explore</span></div>
@@ -58,6 +58,7 @@
             </div>
         </section>
         <section class="product-grid" id="productGrid"></section>
+        <nav class="pagination" id="pagination" aria-label="Product pages"></nav>
         <section class="story-band" id="story">
             <div class="story-image"></div>
             <div class="story-copy">

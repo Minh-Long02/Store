@@ -244,7 +244,37 @@ a {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0 14px;
-    padding: 14px 4vw 110px
+    padding: 14px 4vw 55px
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4vw 75px;
+}
+
+.pagination:empty {
+    display: none;
+}
+
+.pagination button {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid var(--line);
+    font: 10px var(--mono);
+}
+
+.pagination button:hover, .pagination button.active {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.pagination button:disabled {
+    opacity: .3;
+    cursor: default;
 }
 
 .product-card {
@@ -887,8 +917,11 @@ footer {
     .sidebar-nav a { font: 9px var(--mono); text-transform: uppercase; letter-spacing: .02em; transition: opacity .2s; }
     .sidebar-nav a:hover { opacity: .45; }
     .sidebar-filter { display: flex; flex-direction: column; gap: 13px; }
+    .sidebar-filter-title { margin: 0 0 2px; font: 9px var(--mono); text-transform: uppercase; letter-spacing: .02em; color: var(--ink); }
+    .sidebar-filter button { display: none; }
+    .sidebar-filter:hover button, .sidebar-filter:focus-within button { display: block; }
     .sidebar-filter button { padding: 0; text-align: left; font: 9px var(--mono); text-transform: uppercase; letter-spacing: .02em; opacity: .72; }
-    .sidebar-filter button.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+    .sidebar-filter button.active, .sidebar-filter button:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
     .sidebar-foot { margin-top: auto; display: flex; flex-direction: column; gap: 12px; font: 8px var(--mono); text-transform: uppercase; letter-spacing: .05em; opacity: .55; }
     .announcement, .site-header, main, footer { margin-left: 194px; }
     .announcement { height: 25px; font-size: 9px; gap: 17px; }
@@ -916,7 +949,10 @@ footer {
     .home-sidebar { display: block; position: static; width: 100%; height: auto; padding: 12px 18px 10px; background: #fff; border-right: 0; border-bottom: 1px solid var(--line); }
     .sidebar-logo, .sidebar-nav>a, .sidebar-foot { display: none; }
     .sidebar-nav { display: block; overflow-x: auto; }
-    .sidebar-filter { display: flex; flex-direction: row; gap: 20px; white-space: nowrap; width: max-content; }
+    .sidebar-filter { display: flex; flex-direction: row; gap: 20px; white-space: nowrap; width: max-content; align-items: center; }
+    .sidebar-filter-title { margin: 0; font-size: 9px; }
+    .sidebar-filter button { display: none; }
+    .sidebar-filter:hover button, .sidebar-filter:focus-within button { display: block; }
     .sidebar-filter button { font-size: 9px; }
     .announcement, .site-header, main, footer { margin-left: 0; }
     .toolbar-label { display: none; }
