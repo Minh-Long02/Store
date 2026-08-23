@@ -45,7 +45,7 @@
  }
 
  .checkout-form h1 em, .order-success h2 em {
-     color: var(--coral);
+     color: white;
      font-weight: 500
  }
 
@@ -237,7 +237,7 @@
  .order-success {
      position: fixed;
      inset: 0;
-     background: var(--lime);
+     background: white;
      z-index: 30;
      display: none;
      align-items: center;
