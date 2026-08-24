@@ -58,7 +58,10 @@ a {
     gap: 20px;
     text-transform: uppercase;
     letter-spacing: .12em;
-    font: 11px var(--mono)
+    font: 11px var(--mono);
+    position: sticky;
+    top: 0;
+    z-index: 30
 }
 
 .announcement span {
@@ -72,7 +75,10 @@ a {
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     padding: 0 4vw;
-    position: relative
+    position: sticky;
+    top: 34px;
+    z-index: 29;
+    background: #fff
 }
 
 .desktop-nav {
@@ -974,6 +980,29 @@ footer {
     margin: 0
 }
 
+.cart-quantity-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 8px;
+    font: 10px var(--mono);
+}
+
+.cart-quantity-control button {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 1px solid var(--line);
+    background: transparent;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.cart-quantity-control button:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
+
 .remove-item {
     margin-left: auto;
     font-size: 19px
@@ -1272,6 +1301,10 @@ footer {
     margin-bottom: 28px;
 }
 
+.featured-categories .section-heading {
+    justify-content: flex-start;
+}
+
 .section-heading h2 {
     margin: 0;
     font: 500 clamp(34px, 4vw, 58px)/.95 var(--serif);
@@ -1534,6 +1567,7 @@ footer {
 
     .site-header {
         height: 62px;
+        top: 34px;
         padding: 0 14px;
     }
 
@@ -1696,6 +1730,15 @@ footer {
         opacity: .45;
     }
 
+    .sidebar-nav a[aria-current="page"],
+    .sidebar-filter a[aria-current="page"] {
+        opacity: 1;
+        color: var(--coral);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1px;
+    }
+
     .sidebar-filter {
         display: flex;
         flex-direction: column;
@@ -1710,27 +1753,43 @@ footer {
         color: var(--ink);
     }
 
-    .sidebar-filter button {
+    .sidebar-filter-title.is-active {
+        color: var(--coral);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1px;
+    }
+
+    .sidebar-filter a {
         display: none;
     }
 
-    .sidebar-filter:hover button, .sidebar-filter:focus-within button {
+    .sidebar-filter:hover a, .sidebar-filter:focus-within a {
         display: block;
     }
 
-    .sidebar-filter button {
-        padding: 0;
-        text-align: left;
+    .sidebar-filter a {
         font: 9px var(--mono);
         text-transform: uppercase;
         letter-spacing: .02em;
         opacity: .72;
     }
 
-    .sidebar-filter button.active, .sidebar-filter button:hover {
+    .sidebar-filter a:hover {
         opacity: 1;
         text-decoration: underline;
         text-underline-offset: 4px;
+    }
+
+    @media(min-width:761px) {
+        .home-sidebar .sidebar-filter a {
+            display: none !important;
+        }
+
+        .home-sidebar .sidebar-filter:hover a,
+        .home-sidebar .sidebar-filter:focus-within a {
+            display: block !important;
+        }
     }
 
     .sidebar-foot {
@@ -1758,6 +1817,7 @@ footer {
     .site-header {
         height: 39px;
         background: #fff;
+        top: 25px;
         padding: 0 22px;
         border-bottom: 1px solid var(--line);
         grid-template-columns: 1fr auto 1fr;
@@ -1976,11 +2036,11 @@ footer {
         font-size: 9px;
     }
 
-    .sidebar-filter button {
+    .sidebar-filter a {
         display: block;
     }
 
-    .sidebar-filter button {
+    .sidebar-filter a {
         font-size: 9px;
     }
 
@@ -2331,7 +2391,7 @@ footer {
 
     .home-sidebar.open .sidebar-nav a,
     .home-sidebar.open .sidebar-filter-title,
-    .home-sidebar.open .sidebar-filter button,
+    .home-sidebar.open .sidebar-filter a,
     .collection-sidebar.open .sidebar-nav a,
     .brand-sidebar.open .sidebar-nav a,
     .product-sidebar.open .sidebar-nav a,
@@ -2475,8 +2535,9 @@ footer {
 
 @media(max-width:760px) {
     .collection-intro {
-        min-height: 680px;
-        height: 680px;
+        min-height: 700px;
+        height: 700px;
+        position: relative;
     }
 
     .collection-intro .intro-visual {
@@ -2484,12 +2545,39 @@ footer {
         position: absolute;
         z-index: 1;
         left: 50%;
-        bottom: 9vh;
+        bottom: 13vh;
         width: min(78vw, 340px);
         height: min(48vh, 400px);
         margin: 0;
         transform: translateX(-50%) rotate(2deg);
         background: var(--intro-hero-image, url('Image/HRbanner_Chalice%20craft.jpg')) center / cover;
         box-shadow: 10px 10px 0 var(--lime);
+    }
+
+    .site-header .header-actions {
+        right: 12px;
+        max-width: calc(100% - 150px);
+    }
+
+    .announcement {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 40 !important;
+    }
+
+    .site-header {
+        position: sticky !important;
+        top: 34px !important;
+        z-index: 39 !important;
+        background: #fff;
+    }
+
+    .site-header > a[aria-label="Chalice Craft home"] {
+        position: absolute !important;
+        left: 50% !important;
+        right: auto !important;
+        width: 112px !important;
+        margin: 0 !important;
+        transform: translateX(-50%) !important;
     }
 }

@@ -9,12 +9,19 @@
     padding: 0 5vw;
     display: flex;
     align-items: center;
-    justify-content: space-between
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: #fff;
 }
 
 .admin-header .wordmark {
     display: block;
-    font-size: 36px
+    font-size: 36px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .admin-header .wordmark img {
@@ -28,7 +35,10 @@
 .admin-header>div {
     display: flex;
     align-items: center;
-    gap: 25px
+    gap: 25px;
+    margin-left: auto;
+    position: relative;
+    z-index: 1;
 }
 
 .admin-label {
@@ -223,7 +233,15 @@
 }
 
 @media(max-width:700px) {
+    .admin-page {
+        padding-top: 86px;
+    }
+
     .admin-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
         padding: 0 20px
     }
 

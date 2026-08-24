@@ -76,6 +76,27 @@
             letter-spacing: .04em;
         }
 
+        .sidebar-filter-title {
+            margin: 0;
+            font: 10px var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            opacity: .55;
+        }
+
+        .sidebar-filter-title.is-active {
+            opacity: 1;
+            color: var(--coral);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .sidebar-nav a[aria-current="page"] {
+            color: var(--coral);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
         .sidebar-nav a:hover,
         .back-link:hover {
             opacity: .55;
@@ -102,10 +123,14 @@
             font: 9px var(--mono);
             text-transform: uppercase;
             letter-spacing: .12em;
+            position: sticky;
+            top: 0;
+            z-index: 30;
         }
 
         .collection-header {
-            position: relative;
+            position: sticky;
+            top: 34px;
             height: 70px;
             margin-left: 205px;
             padding: 0 4vw;
@@ -114,6 +139,7 @@
             justify-content: center;
             background: #fff;
             border-bottom: 1px solid var(--line);
+            z-index: 29;
         }
 
         .collection-header img {
@@ -143,7 +169,7 @@
         .collection-intro .back-link {
             display: block;
             width: max-content;
-            margin: 0 auto 34px;
+            margin: 0 0 28px;
         }
 
         .eyebrow {
@@ -324,7 +350,15 @@
             }
 
             .collection-intro {
-                padding: 45px 20px 35px;
+                padding: 24px 20px 35px;
+                text-align: left;
+            }
+
+            .collection-intro .back-link {
+                display: inline-flex;
+                align-items: center;
+                width: auto;
+                margin: 0 0 14px;
             }
 
             .product-grid {
@@ -341,15 +375,14 @@
     <aside class="collection-sidebar">
         <a class="sidebar-logo" href="index.html"><img src="Image/Menu_Image.jpg" alt="Chalice Craft"></a>
         <nav class="sidebar-nav" aria-label="Shop collections">
-            <a href="collection.html?type=bracelets">Green ring drop</a>
-            <a href="collection.html?type=all">New in</a>
-            <a href="index.html#shop">Shop all</a>
+            <p class="sidebar-filter-title">Category</p>
+            <a href="collection.html?type=all">Shop all</a>
             <a href="collection.html?type=necklaces">Necklaces</a>
             <a href="collection.html?type=bracelets">Bracelets</a>
             <a href="collection.html?type=rings">Rings</a>
             <a href="collection.html?type=earrings">Earrings</a>
-            <a href="collection.html?type=earrings">Hair clips</a>
-            <a href="about.html">Reworked vintage drop</a>
+            <a href="collection.html?type=hair-clips">Hair clips</a>
+            <a href="about.html">About us</a>
         </nav>
         <div class="sidebar-foot"><span>Made slowly, worn daily</span><span>↓ Scroll to explore</span></div>
     </aside>
@@ -358,7 +391,6 @@
         <button class="brand-mobile-toggle" type="button" aria-label="Open menu"
             aria-expanded="false"><span></span><span></span></button>
         <a href="index.html" aria-label="Chalice Craft home"><img src="Image/Menu_Image.jpg" alt="Chalice Craft"></a>
-        <span class="collection-count" id="collectionCount"></span>
     </header>
     <main>
         <section class="collection-intro">
@@ -388,7 +420,6 @@
         const matches = type === 'all' ? products : products.filter(product => product.type === type);
         document.title = `${title} | Chalice Craft`;
         document.getElementById('collectionTitle').textContent = title;
-        document.getElementById('collectionCount').textContent = `${matches.length} pieces`;
         document.getElementById('productGrid').innerHTML = matches.length ? matches.map((product, index) => { const hoverImage = product.imageHover || (product.images && product.images[1]); const detailUrl = `product.html?name=${encodeURIComponent(product.name)}`; return `<article class="product-card"><div class="product-image">${product.tag ? `<span class="tag">${product.tag}</span>` : ''}<img class="image-primary" src="${product.image}" alt="${product.name}">${hoverImage ? `<img class="image-hover" src="${hoverImage}" alt="${product.name} alternate view">` : ''}</div><div class="product-info"><div><a href="${detailUrl}"><h2 class="product-name">${product.name}</h2></a><p class="product-meta">${product.meta}</p></div><p class="product-price">$${Number(product.price).toFixed(2)}</p></div><button class="add-button" data-index="${index}">Add to bag</button></article>`; }).join('') : '<p class="empty">This collection is being refreshed. Please come back soon.</p>';
         document.querySelectorAll('.add-button').forEach(button => button.addEventListener('click', () => {
             const product = matches[Number(button.dataset.index)];

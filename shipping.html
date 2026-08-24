@@ -25,6 +25,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            background: #fff;
         }
 
         .shipping-main {
@@ -192,7 +196,7 @@
     <aside class="home-sidebar">
         <a class="sidebar-logo" href="index.html"><img src="./Image/Menu_Image.jpg" alt="Chalice Craft"></a>
         <nav class="sidebar-nav" aria-label="Shop collections">
-            <a href="collection.html?type=bracelets">Green ring drop</a><a href="collection.html?type=all">New in</a><a href="index.html#shop">Shop all</a><a href="collection.html?type=necklaces">Necklaces</a><a href="collection.html?type=bracelets">Bracelets</a><a href="collection.html?type=rings">Rings</a><a href="collection.html?type=earrings">Earrings</a><a href="collection.html?type=earrings">Hair clips</a><a href="about.html">Reworked vintage drop</a>
+            <p class="sidebar-filter-title">Category</p><a href="collection.html?type=all">Shop all</a><a href="collection.html?type=necklaces">Necklaces</a><a href="collection.html?type=bracelets">Bracelets</a><a href="collection.html?type=rings">Rings</a><a href="collection.html?type=earrings">Earrings</a><a href="collection.html?type=hair-clips">Hair clips</a><a href="about.html">About us</a>
         </nav>
         <div class="sidebar-foot"><span>Made slowly, worn daily</span><span>↓ Scroll to explore</span></div>
     </aside>
@@ -207,7 +211,11 @@
         <p class="shipping-intro">Shipping fees are calculated by destination and added to your order at checkout.
             Select your country to see the exact rate before placing your order.</p>
         <div class="shipping-table" aria-label="Shipping rates by region">
-            <div class="shipping-row"><strong>US, UK, Singapore</strong><span>$10 USD</span></div>
+            <div class="shipping-row"><strong>United States - Mainland</strong><span>$10 USD</span></div>
+            <div class="shipping-row"><strong>United States - Islands</strong><span>$15 USD</span></div>
+            <div class="shipping-row"><strong>Taiwan</strong><span>$12 USD</span></div>
+            <div class="shipping-row"><strong>Vietnam</strong><span>$0 USD</span></div>
+            <div class="shipping-row"><strong>United Kingdom, Singapore</strong><span>$10 USD</span></div>
             <div class="shipping-row"><strong>Canada, Australia, New Zealand, Saudi Arabia, Japan, Korea, Hong
                     Kong</strong><span>$12 USD</span></div>
             <div class="shipping-row"><strong>Thailand, Malaysia, Philippines, Indonesia, Brunei, India</strong><span>$9

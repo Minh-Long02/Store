@@ -49,7 +49,11 @@
      border-bottom: 1px solid var(--line);
      display: flex;
      align-items: center;
-     justify-content: space-between
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: #fff
  }
 
  .checkout-brand {
@@ -238,6 +242,29 @@
      font: 10px var(--mono);
      margin: 0;
      opacity: .65
+ }
+
+ .quantity-control {
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     margin-top: 8px;
+     font: 10px var(--mono);
+ }
+
+ .quantity-control button {
+     width: 20px;
+     height: 20px;
+     padding: 0;
+     border: 1px solid var(--line);
+     background: transparent;
+     cursor: pointer;
+     line-height: 1;
+ }
+
+ .quantity-control button:hover {
+     background: var(--ink);
+     color: var(--paper);
  }
 
  .summary-item strong {
@@ -476,10 +503,19 @@
          align-items: center;
          height: 70px;
          padding: 8px 14px;
+         position: sticky !important;
+         top: 0 !important;
+         z-index: 40 !important;
+         background: #fff;
      }
 
      .checkout-brand {
          justify-self: center;
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         grid-column: 1 / -1;
          padding: 0;
      }
 

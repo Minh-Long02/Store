@@ -13,6 +13,24 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="brand-footer.css">
+    <style>
+        @media (min-width: 761px) {
+            .home-sidebar #filterTabs a {
+                display: none !important;
+            }
+
+            .home-sidebar #filterTabs:hover a,
+            .home-sidebar #filterTabs:focus-within a {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .home-sidebar #filterTabs a {
+                display: block !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -21,20 +39,16 @@
                 onerror="this.style.display='none'"></a>
         <!-- <img src="./Image/Menu_Image.jpg" alt="Chalice Craft"class="menu-img"> -->
         <nav class="sidebar-nav" aria-label="Shop collections">
-            <a href="#shop">GREEN RING DROP</a><a href="#shop">new in ♡</a>
             <div class="sidebar-filter" id="filterTabs">
-                <p class="sidebar-filter-title">Category</p><button class="active" data-filter="all"
-                    onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">SHOP
-                    ALL</button><button data-filter="necklaces"
-                    onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">necklaces</button><button
-                    data-filter="bracelets"
-                    onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">bracelets</button><button
-                    data-filter="rings"
-                    onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">rings</button><button
-                    data-filter="earrings"
-                    onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">earrings</button>
+                <p class="sidebar-filter-title">Category</p>
+                <a href="collection.html?type=all" data-filter="all">Shop all</a>
+                <a href="collection.html?type=bracelets" data-filter="bracelets">Bracelets</a>
+                <a href="collection.html?type=earrings" data-filter="earrings">Earrings</a>
+                <a href="collection.html?type=hair-clips" data-filter="hair-clips">Hair clips</a>
+                <a href="collection.html?type=necklaces" data-filter="necklaces">Necklaces</a>
+                <a href="collection.html?type=rings" data-filter="rings">Rings</a>
             </div>
-            <a href="#shop">hair clips</a><a href="about.html">REWORKED VINTAGE DROP</a>
+            <a href="about.html">ABOUT US</a>
         </nav>
         <div class="sidebar-foot"><span>made slowly, worn daily</span><span>↓ scroll to explore</span></div>
     </aside>
@@ -54,8 +68,6 @@
     <main id="top">
         <section class="collection-intro" id="shop">
             <div>
-                <p class="eyebrow">The everyday edit / 01</p>
-                <h1>Objects with<br><em>a point of view.</em></h1>
             </div>
             <div class="intro-visual" aria-label="Chalice Craft jewellery editorial"></div>
         </section>
@@ -71,26 +83,8 @@
                 <span>Shop necklace</span>
             </a>
         </section>
-        <section class="home-gallery-section home-hero-slider" aria-label="Featured collection">
-            <div class="home-gallery-nav">
-                <button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Previous image">←</button>
-                <button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Next image">→</button>
-            </div>
-            <div class="home-gallery" id="homeGallery">
-                <img src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft featured collection 1">
-                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1400&q=85"
-                    alt="Chalice Craft necklace product">
-                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1400&q=85"
-                    alt="Chalice Craft ring product">
-                <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=1400&q=85"
-                    alt="Chalice Craft bracelet product">
-                <img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=1400&q=85"
-                    alt="Chalice Craft earrings product">
-            </div>
-        </section>
         <section class="featured-categories" aria-labelledby="featuredCategoriesTitle">
             <div class="section-heading">
-                <p class="eyebrow">Explore / 02</p>
                 <h2 id="featuredCategoriesTitle">Featured categories</h2>
             </div>
             <div class="category-grid">
@@ -236,7 +230,7 @@
     </div>
     <aside class="cart-drawer" id="cartDrawer">
         <div class="drawer-head">
-            <h2>Your bag <span id="drawerCount">0</span></h2><button id="closeCart">×</button>
+            <h2>Your bag</h2><button id="closeCart">×</button>
         </div>
         <div class="cart-items" id="cartItems">
             <p class="empty-cart">Your bag is waiting for something special.</p>
@@ -281,6 +275,41 @@
     <script src="script.js"></script>
     <script src="admin-sync.js"></script>
     <script src="brand-menu.js"></script>
+    <style>
+        @media (max-width: 760px) {
+            body {
+                padding-top: 104px;
+            }
+
+            .announcement {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0;
+                right: 0;
+                z-index: 40 !important;
+            }
+
+            .site-header {
+                position: fixed !important;
+                top: 34px !important;
+                left: 0;
+                right: 0;
+                z-index: 39 !important;
+                background: #fff;
+            }
+
+            .site-header>a[aria-label="Chalice Craft home"] {
+                position: absolute !important;
+                left: 50% !important;
+                top: 50% !important;
+                right: auto !important;
+                grid-column: 1 / -1 !important;
+                width: 112px !important;
+                margin: 0 !important;
+                transform: translate(-50%, -50%) !important;
+            }
+        }
+    </style>
     <script>
         if (sessionStorage.getItem('moriRole') === 'admin' || localStorage.getItem('moriRole') === 'admin') {
             const adminProfile = document.getElementById('loginToggle');

@@ -21,11 +21,11 @@
     <aside class="home-sidebar">
         <a class="sidebar-logo" href="index.html"><img src="./Image/Menu_Image.jpg" alt="Chalice Craft"></a>
         <nav class="sidebar-nav" aria-label="Shop collections">
-            <a href="collection.html?type=bracelets">Green ring drop</a><a href="collection.html?type=all">New in</a><a
-                href="index.html#shop">Shop all</a><a href="collection.html?type=necklaces">Necklaces</a><a
+            <p class="sidebar-filter-title">Category</p><a
+                href="collection.html?type=all">Shop all</a><a href="collection.html?type=necklaces">Necklaces</a><a
                 href="collection.html?type=bracelets">Bracelets</a><a href="collection.html?type=rings">Rings</a><a
-                href="collection.html?type=earrings">Earrings</a><a href="collection.html?type=earrings">Hair
-                clips</a><a href="about.html">Reworked vintage drop</a>
+                href="collection.html?type=earrings">Earrings</a><a href="collection.html?type=hair-clips">Hair
+                clips</a><a href="about.html">About us</a>
         </nav>
         <div class="sidebar-foot"><span>Made slowly, worn daily</span><span>↓ Scroll to explore</span></div>
     </aside>
@@ -40,13 +40,13 @@
         <section class="checkout-form">
             <a class="checkout-continue" href="index.html">← Continue shopping</a>
             <p class="eyebrow">01 / Shipping details</p>
-            <h1>Almost<br><em>yours.</em></h1>
             <form id="paymentForm">
                 <div class="field full"><label for="fullName">Full name</label><input id="fullName" required
                         autocomplete="name"></div>
                 <div class="field full"><label for="country">Country</label><select id="country" required>
                         <option value="" selected disabled>Select country</option>
-                        <option value="10">United States (US)</option>
+                        <option value="10">United States - Mainland (US)</option>
+                        <option value="15">United States - Islands (US)</option>
                         <option value="10">United Kingdom (UK)</option>
                         <option value="10">Singapore</option>
                         <option value="12">Canada</option>
@@ -62,7 +62,8 @@
                         <option value="9">Indonesia</option>
                         <option value="9">Brunei</option>
                         <option value="9">India</option>
-                        <option value="16">Vietnam</option>
+                        <option value="12">Taiwan</option>
+                        <option value="0">Vietnam</option>
                         <option value="16">European Countries and Other Regions</option>
                     </select></div>
                 <div class="field"><label for="email">Email</label><input id="email" type="email" required
@@ -76,16 +77,14 @@
                 <div class="field"><label for="postal">Postal code</label><input id="postal" inputmode="numeric"
                         required></div>
                 <div class="payment-method full"><label>Payment method</label><label class="payment-option"><input
-                            type="radio" name="payment" checked> <span>Cash on delivery</span><b>COD</b></label><label
-                        class="payment-option"><input type="radio" name="payment"> <span>Credit / debit
-                            card</span><b>VISA</b></label></div>
+                            type="radio" name="payment" checked> <span>Cash on delivery</span><b>COD</b></label></div>
                 <p class="checkout-error" id="checkoutError"></p><button class="place-order" type="submit">Place order
                     <span>↗</span></button>
             </form>
         </section>
         <aside class="order-summary">
             <p class="eyebrow">02 / Your order</p>
-            <h2>Order summary <span id="summaryCount">0</span></h2>
+            <h2>Order summary</h2>
             <div id="summaryItems"></div>
             <div class="summary-lines">
                 <div><span>Subtotal</span><strong id="summarySubtotal">$0.00</strong></div>
@@ -121,6 +120,32 @@
                 Worldwide</span><span>Privacy & terms</span></div>
     </footer>
     <script src="brand-menu.js"></script>
+    <style>
+        @media (max-width: 700px) {
+            .checkout-page {
+                padding-top: 70px;
+            }
+
+            .checkout-page > .checkout-header {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0;
+                right: 0;
+                z-index: 40 !important;
+                background: #fff;
+            }
+
+            .checkout-header .checkout-brand {
+                position: absolute !important;
+                left: 50% !important;
+                top: 50% !important;
+                right: auto !important;
+                grid-column: 1 / -1 !important;
+                transform: translate(-50%, -50%) !important;
+                margin: 0 !important;
+            }
+        }
+    </style>
 </body>
 
 </html>

@@ -74,6 +74,27 @@
             letter-spacing: .04em;
         }
 
+        .sidebar-filter-title {
+            margin: 0;
+            font: 10px var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            opacity: .55;
+        }
+
+        .sidebar-filter-title.is-active {
+            opacity: 1;
+            color: var(--coral);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .sidebar-nav a[aria-current="page"] {
+            color: var(--coral);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
         .sidebar-nav a:hover,
         .back-link:hover {
             opacity: .55;
@@ -100,10 +121,14 @@
             font: 9px var(--mono);
             text-transform: uppercase;
             letter-spacing: .12em;
+            position: sticky;
+            top: 0;
+            z-index: 30;
         }
 
         .product-header {
-            position: relative;
+            position: sticky;
+            top: 34px;
             height: 86px;
             margin-left: 205px;
             padding: 0 4vw;
@@ -111,6 +136,7 @@
             align-items: center;
             justify-content: space-between;
             background: white;
+            z-index: 29;
         }
 
         .product-header img {
@@ -172,6 +198,12 @@
             margin-left: 205px;
             width: calc(100% - 205px);
             padding: 12px 5vw 56px;
+        }
+
+        .product-page .back-link {
+            grid-column: 1 / -1;
+            width: max-content;
+            margin: 0 0 14px;
         }
 
         .product-media {
@@ -400,15 +432,6 @@
                 position: relative;
             }
 
-            .product-header .back-link {
-                position: absolute;
-                top: calc(100% + 14px);
-                left: 20px;
-                right: auto;
-                transform: none;
-                z-index: 2;
-            }
-
             .product-header img {
                 width: 120px;
                 max-height: 54px;
@@ -422,7 +445,14 @@
                 display: block;
                 margin-left: 0;
                 width: 100%;
-                padding: 70px 20px 20px;
+                padding: 24px 20px 20px;
+            }
+
+            .product-page .back-link {
+                display: inline-flex;
+                align-items: center;
+                width: auto;
+                margin: 0 0 14px;
             }
 
             .product-photo {
@@ -512,11 +542,11 @@
     <aside class="brand-sidebar">
         <a class="sidebar-logo" href="index.html"><img src="Image/Menu_Image.jpg" alt="Chalice Craft"></a>
         <nav class="sidebar-nav" aria-label="Shop collections">
-            <a href="collection.html?type=bracelets">Green ring drop</a><a href="collection.html?type=all">New in</a><a
-                href="index.html#shop">Shop all</a><a href="collection.html?type=necklaces">Necklaces</a><a
+            <p class="sidebar-filter-title">Category</p><a
+                href="collection.html?type=all">Shop all</a><a href="collection.html?type=necklaces">Necklaces</a><a
                 href="collection.html?type=bracelets">Bracelets</a><a href="collection.html?type=rings">Rings</a><a
-                href="collection.html?type=earrings">Earrings</a><a href="collection.html?type=earrings">Hair
-                clips</a><a href="about.html">Reworked vintage drop</a>
+                href="collection.html?type=earrings">Earrings</a><a href="collection.html?type=hair-clips">Hair
+                clips</a><a href="about.html">About us</a>
         </nav>
         <div class="sidebar-foot"><span>Made slowly, worn daily</span><span>↓ Scroll to explore</span></div>
     </aside>
@@ -524,11 +554,11 @@
     <header class="product-header">
         <button class="brand-mobile-toggle" type="button" aria-label="Open menu"
             aria-expanded="false"><span></span><span></span></button>
-        <a class="back-link" href="index.html">← Back to shop</a>
         <a href="index.html" aria-label="Chalice Craft home"><img src="Image/Menu_Image.jpg" alt="Chalice Craft"></a>
         <div class="product-cart-bar"><a class="product-cart-link" href="checkout.html" aria-label="Open shopping cart"><svg class="product-cart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg><span id="productCartCount">0</span></a></div>
     </header>
     <main class="product-page">
+        <a class="back-link" href="index.html">← Back to shop</a>
         <section class="product-media">
             <div class="product-photo"><button class="gallery-arrow gallery-prev" id="previousImage"
                     aria-label="Previous image">←</button><img id="productImage" alt=""><button
