@@ -1,4 +1,15 @@
 (() => {
+    const sessionRole = sessionStorage.getItem('moriRole');
+    const storedRole = localStorage.getItem('moriRole');
+    const hasCurrentUser = !!localStorage.getItem('moriCurrentUser');
+    const role = sessionRole || storedRole || (hasCurrentUser ? 'user' : '');
+    const isLoggedIn = sessionStorage.getItem('moriLoggedIn') === 'true' || role === 'admin' || hasCurrentUser;
+    if (role === 'admin') {
+        sessionStorage.setItem('moriLoggedIn', 'true');
+        sessionStorage.setItem('moriRole', 'admin');
+        localStorage.setItem('moriRole', 'admin');
+    }
+
     const mobileStyle = document.createElement('style');
     mobileStyle.textContent = '@media(max-width:800px){.brand-mobile-toggle{display:flex!important;align-items:center;justify-content:center;width:44px;height:44px;padding:0;background:#fff;color:#000;border:0;flex:0 0 44px;font-size:0;line-height:0;gap:5px}.brand-mobile-toggle span{display:block;width:20px;height:2px;background:#000;margin:0!important}.collection-sidebar,.product-sidebar,.brand-sidebar,.shipping-page>.home-sidebar,.checkout-page>.home-sidebar{display:none!important}.collection-sidebar.open,.product-sidebar.open,.brand-sidebar.open,.shipping-page>.home-sidebar.open,.checkout-page>.home-sidebar.open{display:block!important;position:relative!important;inset:auto!important;width:100%!important;height:auto!important;margin:0!important;padding:18px 20px!important;border:0!important}.collection-sidebar.open .sidebar-logo,.product-sidebar.open .sidebar-logo,.brand-sidebar.open .sidebar-logo,.shipping-page>.home-sidebar.open .sidebar-logo,.checkout-page>.home-sidebar.open .sidebar-logo{display:block!important;margin:0 auto 18px!important}.collection-sidebar.open .sidebar-nav,.product-sidebar.open .sidebar-nav,.brand-sidebar.open .sidebar-nav,.shipping-page>.home-sidebar.open .sidebar-nav,.checkout-page>.home-sidebar.open .sidebar-nav{display:grid!important;gap:13px!important}.collection-sidebar.open .sidebar-nav>a,.product-sidebar.open .sidebar-nav>a,.brand-sidebar.open .sidebar-nav>a,.shipping-page>.home-sidebar.open .sidebar-nav>a,.checkout-page>.home-sidebar.open .sidebar-nav>a{display:block!important}.collection-sidebar.open .sidebar-foot,.product-sidebar.open .sidebar-foot,.brand-sidebar.open .sidebar-foot,.shipping-page>.home-sidebar.open .sidebar-foot,.checkout-page>.home-sidebar.open .sidebar-foot{display:grid!important;margin-top:22px!important}.collection-header,.product-header,.shipping-page>.shipping-header,.checkout-page>.checkout-header{position:relative!important}.collection-header .brand-mobile-toggle,.product-header .brand-mobile-toggle,.shipping-page>.shipping-header .brand-mobile-toggle,.checkout-page>.checkout-header .brand-mobile-toggle{display:flex!important}.collection-header,.product-header,.shipping-page>.shipping-header,.checkout-page>.checkout-header{justify-content:space-between!important}.collection-header .brand-mobile-toggle+img,.product-header .brand-mobile-toggle+img,.shipping-page>.shipping-header .brand-mobile-toggle+img,.checkout-page>.checkout-header .brand-mobile-toggle+*{margin-left:auto;margin-right:auto}.checkout-page>.checkout-header{height:70px;padding:0 20px}.checkout-page>.checkout-header .checkout-brand-image{width:120px}.checkout-page>.checkout-header .back-link{font-size:9px}}@media(min-width:801px){.brand-mobile-toggle{display:none!important}}';
     mobileStyle.textContent += '@media(max-width:800px){.collection-header>a[aria-label="Chalice Craft home"],.product-header>a[aria-label="Chalice Craft home"],.site-header>a[aria-label="Chalice Craft home"],.checkout-header .checkout-brand{position:absolute!important;left:50%!important;top:50%!important;right:auto!important;grid-column:1/-1!important;width:112px!important;transform:translate(-50%,-50%)!important;margin:0!important;display:block!important}.collection-header>a[aria-label="Chalice Craft home"] img,.product-header>a[aria-label="Chalice Craft home"] img,.site-header>a[aria-label="Chalice Craft home"] img{display:block!important}}';
@@ -39,9 +50,9 @@
         actions.className = 'brand-page-actions';
         const account = document.createElement('a');
         account.className = 'brand-page-account';
-        account.href = 'index.html';
-        account.textContent = 'Reg / Log';
-        account.setAttribute('aria-label', 'Register or sign in');
+        account.href = isLoggedIn ? (role === 'admin' ? 'dashboard.html' : 'index.html?profile=1') : 'index.html?auth=1';
+        account.textContent = isLoggedIn ? 'Profile' : 'Reg / Log';
+        account.setAttribute('aria-label', isLoggedIn ? 'Open profile' : 'Register or sign in');
         actions.append(account);
         const existingCart = header.querySelector('.product-cart-bar');
         if (existingCart) {
@@ -58,6 +69,13 @@
         header.append(actions);
         const count = actions.querySelector('span');
         if (count) count.textContent = JSON.parse(localStorage.getItem('moriBag') || '[]').length;
+    }
+
+    const accountAction = header?.querySelector('.brand-page-account');
+    if (accountAction) {
+        accountAction.href = isLoggedIn ? (role === 'admin' ? 'dashboard.html' : 'index.html?profile=1') : 'index.html?auth=1';
+        accountAction.textContent = isLoggedIn ? 'Profile' : 'Reg / Log';
+        accountAction.setAttribute('aria-label', isLoggedIn ? 'Open profile' : 'Register or sign in');
     }
     const categoryLabels = {
         necklaces: 'Necklaces',

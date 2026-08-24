@@ -275,6 +275,31 @@
     <script src="script.js"></script>
     <script src="admin-sync.js"></script>
     <script src="brand-menu.js"></script>
+    <script>
+        (() => {
+            const params = new URLSearchParams(window.location.search);
+            const wantsAuth = params.get('auth') === '1';
+            const wantsProfile = params.get('profile') === '1';
+            if (!wantsAuth && !wantsProfile) return;
+
+            const role = sessionStorage.getItem('moriRole') || localStorage.getItem('moriRole');
+            if (wantsProfile && role === 'admin') {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            const cleaned = new URL(window.location.href);
+            cleaned.searchParams.delete('auth');
+            cleaned.searchParams.delete('profile');
+            window.history.replaceState({}, '', cleaned.toString());
+
+            window.addEventListener('load', () => {
+                const loginToggle = document.getElementById('loginToggle');
+                if (!loginToggle) return;
+                loginToggle.click();
+            }, { once: true });
+        })();
+    </script>
     <style>
         @media (max-width: 760px) {
             body {

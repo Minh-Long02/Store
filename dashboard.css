@@ -197,10 +197,11 @@
     position: fixed;
     inset: 0;
     background: rgba(17, 45, 42, .5);
-    z-index: 10;
+    z-index: 120;
     align-items: center;
     justify-content: center;
-    padding: 20px
+    padding: 24px;
+    overflow: auto;
 }
 
 .product-modal.open {
@@ -211,9 +212,11 @@
     position: relative;
     background: white;
     width: min(500px, 100%);
+    max-height: calc(100vh - 48px);
     padding: 45px;
     display: grid;
-    gap: 18px
+    gap: 18px;
+    overflow: auto;
 }
 
 .product-form h2 {
@@ -242,16 +245,34 @@
         top: 0;
         left: 0;
         right: 0;
-        padding: 0 20px
+        height: 72px;
+        padding: 0 14px;
+        justify-content: space-between;
+    }
+
+    .admin-header .wordmark {
+        position: static;
+        left: auto;
+        transform: none;
+        display: inline-flex;
+        align-items: center;
     }
 
     .admin-header>div {
-        gap: 12px
+        margin-left: 0;
+        gap: 10px;
+        flex: 0 0 auto;
     }
 
     .admin-header .wordmark img {
-        width: 150px;
-        max-width: 42vw;
+        width: 112px;
+        max-width: 34vw;
+        max-height: 52px;
+    }
+
+    .admin-header button {
+        font-size: 9px;
+        white-space: nowrap;
     }
 
     .admin-label {
@@ -316,6 +337,8 @@
     }
 
     .product-form {
-        padding: 38px 25px
+        width: min(560px, 100%);
+        max-height: calc(100vh - 120px);
+        padding: 34px 24px;
     }
 }
