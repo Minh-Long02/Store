@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | Chalice Craft</title>
+    <link rel="icon" type="image/jpeg" href="Image/Icon logo brand.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root { --ink: #112d2a; --coral: #e8735d; --line: rgba(17, 45, 42, .18); --serif: 'Playfair Display', Georgia, serif; --sans: 'DM Sans', sans-serif; --mono: 'DM Mono', monospace; }
+        * { box-sizing: border-box; }
+        body { margin: 0; color: var(--ink); background: #fff; font-family: var(--sans); }
+        a, button { color: inherit; font: inherit; }
+        a { text-decoration: none; }
+        .brand-sidebar { position: fixed; inset: 0 auto 0 0; width: 205px; padding: 32px 20px 24px; background: #fff; z-index: 2; }
+        .sidebar-logo { display: block; margin: 0 auto 52px; }
+        .sidebar-logo img { display: block; width: 150px; height: auto; }
+        .sidebar-nav { display: grid; gap: 18px; }
+        .sidebar-nav a, .sidebar-foot { font: 10px var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+        .sidebar-nav a:hover, .back-link:hover { opacity: .55; }
+        .sidebar-foot { position: absolute; left: 20px; bottom: 24px; display: grid; gap: 10px; opacity: .55; font-size: 8px; }
+        .brand-bar { height: 34px; margin-left: 205px; padding: 0 4vw; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--line); font: 9px var(--mono); text-transform: uppercase; letter-spacing: .12em; }
+        .product-header { height: 86px; margin-left: 205px; padding: 0 4vw; display: flex; align-items: center; justify-content: space-between; background: white; }
+        .product-header img { width: 150px; max-height: 66px; object-fit: contain; }
+        .back-link { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+        .product-page { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: 38px; padding: 38px 5vw 56px; }
+        .product-media { min-width: 0; }
+        .product-photo { position: relative; aspect-ratio: 1 / 1.08; background: #fff; overflow: hidden; }
+        .product-photo > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+        .gallery-arrow { position: absolute; top: 50%; width: 38px; height: 38px; transform: translateY(-50%); background: rgba(255,255,255,.9); border: 1px solid var(--line); cursor: pointer; z-index: 1; }
+        .gallery-arrow:hover { background: var(--ink); color: #fff; }
+        .gallery-prev { left: 14px; }
+        .gallery-next { right: 14px; }
+        .thumbnails { display: flex; gap: 8px; padding-top: 12px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+        .thumbnails::-webkit-scrollbar { display: none; }
+        .thumbnail { flex: 0 0 66px; height: 76px; padding: 0; border: 1px solid transparent; background: #fff; cursor: pointer; }
+        .thumbnail.active { border-color: var(--ink); }
+        .thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+        .product-details { padding: clamp(40px, 8vw, 120px) clamp(28px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; background: white; }
+        .product-kicker { font: 10px var(--mono); letter-spacing: .14em; text-transform: uppercase; margin: 0 0 18px; }
+        h1 { margin: 0 0 16px; font: 500 clamp(40px, 5vw, 76px)/.98 var(--serif); }
+        .product-meta { margin: 0 0 28px; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; opacity: .65; }
+        .product-price { margin-bottom: 34px; font: 18px var(--mono); }
+        .product-copy { max-width: 390px; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); line-height: 1.7; white-space: pre-line; }
+        .add-to-bag { width: 100%; max-width: 360px; padding: 17px 20px; background: var(--ink); color: white; border: 0; cursor: pointer; text-transform: uppercase; letter-spacing: .1em; font: 11px var(--mono); }
+        .add-to-bag:hover { background: var(--coral); }
+        .added-message { min-height: 22px; margin: 14px 0 0; font: 11px var(--mono); }
+        .related-products { margin-left: 205px; padding: 48px 4vw 90px; border-top: 1px solid var(--line); }
+        .related-title { margin: 0 0 24px; font: 500 28px var(--serif); }
+        .related-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+        .related-card { min-width: 0; }
+        .related-card img { display: block; width: 100%; aspect-ratio: 1 / 1.12; object-fit: cover; }
+        .related-card h2 { margin: 10px 0 4px; font: 500 15px var(--serif); }
+        .related-card p { margin: 0; font: 10px var(--mono); opacity: .7; }
+        .related-card:hover img { opacity: .78; }
+        @media (max-width: 700px) { .brand-sidebar { position: static; width: auto; padding: 18px 20px; } .sidebar-logo { margin: 0 auto 18px; } .sidebar-logo img { width: 125px; } .sidebar-nav { display: flex; flex-wrap: wrap; gap: 12px 18px; } .sidebar-foot { display: none; } .brand-bar, .product-header, .product-page, .related-products { margin-left: 0; } .product-header { height: 70px; padding: 0 20px; } .product-header img { width: 120px; max-height: 54px; } .product-page { display: block; padding: 20px; } .product-photo { height: 62vh; min-height: 360px; } .product-details { padding: 42px 0 56px; } .related-products { padding: 38px 20px 60px; } .related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    </style>
+</head>
+
+<body>
+    <aside class="brand-sidebar">
+        <a class="sidebar-logo" href="index.html"><img src="Image/Menu_Image.jpg" alt="Chalice Craft"></a>
+        <nav class="sidebar-nav" aria-label="Shop collections">
+            <a href="collection.html?type=bracelets">Green ring drop</a><a href="collection.html?type=all">New in</a><a href="index.html#shop">Shop all</a><a href="collection.html?type=necklaces">Necklaces</a><a href="collection.html?type=bracelets">Bracelets</a><a href="collection.html?type=rings">Rings</a><a href="collection.html?type=earrings">Earrings</a><a href="collection.html?type=earrings">Hair clips</a><a href="about.html">Reworked vintage drop</a>
+        </nav>
+        <div class="sidebar-foot"><span>Made slowly, worn daily</span><span>↓ Scroll to explore</span></div>
+    </aside>
+    <div class="brand-bar">Free worldwide shipping on orders over $80</div>
+    <header class="product-header">
+        <a class="back-link" href="index.html">← Back to shop</a>
+        <img src="Image/Menu_Image.jpg" alt="Chalice Craft">
+    </header>
+    <main class="product-page">
+        <section class="product-media"><div class="product-photo"><button class="gallery-arrow gallery-prev" id="previousImage" aria-label="Previous image">←</button><img id="productImage" alt=""><button class="gallery-arrow gallery-next" id="nextImage" aria-label="Next image">→</button></div><div class="thumbnails" id="thumbnails"></div></section>
+        <section class="product-details">
+            <p class="product-kicker">Chalice Craft / Featured piece</p>
+            <h1 id="productName"></h1>
+            <p class="product-meta" id="productMeta"></p>
+            <p class="product-price" id="productPrice"></p>
+            <p class="product-copy" id="productDetails">A considered piece designed to become part of your everyday rituals.</p>
+            <button class="add-to-bag" id="addToBag">Add to bag</button>
+            <p class="added-message" id="addedMessage" aria-live="polite"></p>
+        </section>
+    </main>
+    <section class="related-products" aria-labelledby="relatedTitle">
+        <h2 class="related-title" id="relatedTitle">Picked for you</h2>
+        <div class="related-grid" id="relatedGrid"></div>
+    </section>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const defaults = [{ name: 'Serein Pendant', type: 'necklaces', meta: 'Recycled silver / 18”', price: 6, image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=700&q=85', tag: 'New' }, { name: 'Moss Cuff', type: 'bracelets', meta: 'Brass / hand patina', price: 7, image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=700&q=85' }, { name: 'Nami Chain', type: 'necklaces', meta: 'Gold plated / 16”', price: 8, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=700&q=85' }];
+        const products = JSON.parse(localStorage.getItem('moriProducts') || 'null') || defaults;
+        const recommendationDefaults = [
+            { name: 'Pearl Study', type: 'earrings', price: 12, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=85' },
+            { name: 'Silver Form', type: 'rings', price: 18, image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=85' },
+            { name: 'Sol Shell', type: 'earrings', price: 16, image: 'https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=900&q=85' },
+            { name: 'Moss Cuff', type: 'bracelets', price: 22, image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=900&q=85' },
+            { name: 'Nami Chain', type: 'necklaces', price: 24, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=85' }
+        ];
+        const requestedName = params.get('name');
+        const product = products.find(item => item.name === requestedName) || recommendationDefaults.find(item => item.name === requestedName) || products[0];
+        const gallery = [product.image, product.imageHover, ...(product.images || [])].filter((image, index, all) => image && all.indexOf(image) === index);
+        let currentImage = 0;
+        document.title = `${product.name} | Chalice Craft`;
+        document.getElementById('productName').textContent = product.name;
+        document.getElementById('productMeta').textContent = product.meta || '';
+        document.getElementById('productPrice').textContent = `$${Number(product.price).toFixed(2)}`;
+        document.getElementById('productDetails').textContent = product.details || 'A considered piece designed to become part of your everyday rituals.';
+        document.getElementById('thumbnails').innerHTML = gallery.map((image, index) => `<button class="thumbnail${index === 0 ? ' active' : ''}" data-image="${index}" aria-label="View image ${index + 1}"><img src="${image}" alt=""></button>`).join('');
+        function showImage(index) { currentImage = (index + gallery.length) % gallery.length; const image = document.getElementById('productImage'); image.src = gallery[currentImage]; image.alt = product.name; document.querySelectorAll('.thumbnail').forEach((thumbnail, thumbnailIndex) => thumbnail.classList.toggle('active', thumbnailIndex === currentImage)); }
+        document.querySelectorAll('.thumbnail').forEach(thumbnail => thumbnail.addEventListener('click', () => showImage(Number(thumbnail.dataset.image))));
+        document.getElementById('previousImage').addEventListener('click', () => showImage(currentImage - 1));
+        document.getElementById('nextImage').addEventListener('click', () => showImage(currentImage + 1));
+        showImage(0);
+        document.getElementById('addToBag').addEventListener('click', () => {
+            const bag = JSON.parse(localStorage.getItem('moriBag') || '[]');
+            bag.push(product);
+            localStorage.setItem('moriBag', JSON.stringify(bag));
+            document.getElementById('addedMessage').textContent = 'Added to your bag.';
+        });
+        const shuffled = [...products, ...recommendationDefaults].filter((item, index, all) => item.name !== product.name && all.findIndex(candidate => candidate.name === item.name) === index).sort(() => Math.random() - .5).slice(0, 4);
+        document.getElementById('relatedGrid').innerHTML = shuffled.map(item => `<a class="related-card" href="product.html?name=${encodeURIComponent(item.name)}"><img src="${item.image}" alt="${item.name}"><h2>${item.name}</h2><p>$${Number(item.price).toFixed(2)}</p></a>`).join('');
+    </script>
+    <script src="brand-menu.js"></script>
+</body>
+
+</html>

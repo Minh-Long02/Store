@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Chalice Craft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="about-page">
+    <aside class="home-sidebar">
+        <a class="sidebar-logo" href="index.html"><img src="./Image/Menu_Image.jpg" alt="Chalice Craft"></a>
+        <nav class="sidebar-nav" aria-label="Shop collections">
+            <a href="collection.html?type=bracelets">Green ring drop</a><a href="collection.html?type=all">New in</a><a href="index.html#shop">Shop all</a><a href="collection.html?type=necklaces">Necklaces</a><a href="collection.html?type=bracelets">Bracelets</a><a href="collection.html?type=rings">Rings</a><a href="collection.html?type=earrings">Earrings</a><a href="collection.html?type=earrings">Hair clips</a><a href="about.html">Reworked vintage drop</a>
+        </nav>
+        <div class="sidebar-foot"><span>Made slowly, worn daily</span><span>↓ Scroll to explore</span></div>
+    </aside>
+    <div class="announcement">Free worldwide shipping on orders over $80</div>
+    <header class="site-header">
+        <button class="menu-button" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+        <nav class="desktop-nav"><a href="index.html#shop">Shop</a><a href="about.html">Our story</a></nav>
+        <img src="./Image/Menu_Image.jpg" alt="Chalice Craft" class="wordmark header-mark">
+        <div class="header-actions">
+            <button class="icon-button" id="searchToggle" aria-label="Search">⌕</button>
+            <button class="auth-button" id="loginToggle" aria-label="Register or sign in">Reg / Log</button>
+            <button class="cart-button" id="cartToggle">Bag <b id="cartCount">0</b></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-story">
+            <img src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft story image">
+            <div class="about-story-copy">
+                <p class="eyebrow">Our story / 02</p>
+                <h1>Welcome to<br><em>Chalice Craft.</em></h1>
+                <p>Chalice Craft is a small studio inspired by our love for ceramics and handmade creations. We make unique jewelry, accessories, and little ceramic pieces by hand.</p>
+                <p>Our pieces are carefully crafted with attention to detail and thoroughly glazed on both sides. Each piece has its own little differences and character, making every creation truly one of a kind.</p>
+                <p>We always want you to have the best experience shopping with us. Your feedback helps us grow, so feel free to reach out via email at <a href="mailto:bychalice.craft@gmail.com">bychalice.craft@gmail.com</a> with any questions or suggestions.</p>
+                <p>Thank you for supporting handmade ♡</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="./Image/Menu_Image.jpg" alt="Chalice Craft" class="wordmark footer-mark">
+        <div class="footer-links">
+            <div>
+                <p>Explore</p>
+                <a href="index.html#shop">All pieces</a>
+                <a href="about.html">About Us</a>
+                <a href="shipping.html">Shipping</a>
+            </div>
+            <div>
+                <p>Contact us</p>
+                <a class="contact-link" href="mailto:bychalice.craft@gmail.com">
+                    <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 5.5h18v13H3z"></path>
+                        <path d="m3 6 9 7 9-7"></path>
+                    </svg>
+                    <span>bychalice.craft@gmail.com</span>
+                </a>
+                <a class="contact-link" href="https://www.instagram.com/chalice.craft/" target="_blank" rel="noopener noreferrer">
+                    <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3.5" y="3.5" width="17" height="17" rx="4"></rect>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <circle class="contact-icon-dot" cx="17.5" cy="6.5" r=".8"></circle>
+                    </svg>
+                    <span>chalice.craft ↗</span>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Chalice Craft</span><span>Ho Chi Minh City / Worldwide</span><span>Privacy & terms</span></div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="brand-menu.js"></script>
+</body>
+</html>
