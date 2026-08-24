@@ -81,6 +81,14 @@
      min-height: calc(100vh - 90px)
  }
 
+ .checkout-continue {
+     display: block;
+     margin: 0 0 42px;
+     font: 10px var(--mono);
+     text-transform: uppercase;
+     letter-spacing: .08em;
+ }
+
  .checkout-form {
      padding: 75px 9vw 90px 5vw
  }
@@ -370,6 +378,10 @@
          display: block
      }
 
+
+     .checkout-continue {
+         margin-bottom: 36px;
+     }
      .checkout-form {
          padding: 55px 22px 60px
      }

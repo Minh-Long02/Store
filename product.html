@@ -103,6 +103,7 @@
         }
 
         .product-header {
+            position: relative;
             height: 86px;
             margin-left: 205px;
             padding: 0 4vw;
@@ -118,6 +119,46 @@
             object-fit: contain;
         }
 
+        .product-cart-bar {
+            position: absolute;
+            top: 50%;
+            right: 4vw;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            transform: translateY(-50%);
+        }
+
+        .product-cart-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font: 10px var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        .product-cart-icon {
+            width: 17px;
+            height: 17px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+        }
+
+        .product-cart-link span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 16px;
+            height: 16px;
+            padding: 0 4px;
+            border-radius: 50%;
+            background: var(--coral);
+            font-size: 9px;
+        }
+
         .back-link {
             font: 11px var(--mono);
             text-transform: uppercase;
@@ -128,6 +169,8 @@
             display: grid;
             grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
             gap: 38px;
+            margin-left: 205px;
+            width: calc(100% - 205px);
             padding: 12px 5vw 56px;
         }
 
@@ -137,16 +180,17 @@
 
         .product-photo {
             position: relative;
-            aspect-ratio: 1 / 1.08;
             background: #fff;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .product-photo>img {
             display: block;
             width: 100%;
-            height: 100%;
+            height: auto;
+            max-width: 100%;
             object-fit: contain;
+            object-position: center;
         }
 
         .gallery-arrow {
@@ -176,8 +220,10 @@
 
         .thumbnails {
             display: flex;
+            align-items: flex-start;
             gap: 8px;
             padding-top: 12px;
+            min-height: 88px;
             overflow-x: auto;
             scrollbar-width: none;
             -ms-overflow-style: none;
@@ -201,6 +247,7 @@
         }
 
         .thumbnail img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -314,7 +361,7 @@
             opacity: .78;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 900px) {
             .brand-sidebar {
                 position: static;
                 width: auto;
@@ -341,6 +388,7 @@
 
             .brand-bar,
             .product-header,
+            .product-cart-bar,
             .product-page,
             .related-products {
                 margin-left: 0;
@@ -349,6 +397,16 @@
             .product-header {
                 height: 70px;
                 padding: 0 20px;
+                position: relative;
+            }
+
+            .product-header .back-link {
+                position: absolute;
+                top: calc(100% + 14px);
+                left: 20px;
+                right: auto;
+                transform: none;
+                z-index: 2;
             }
 
             .product-header img {
@@ -356,14 +414,20 @@
                 max-height: 54px;
             }
 
+            .product-cart-bar {
+                right: 20px;
+            }
+
             .product-page {
                 display: block;
-                padding: 20px;
+                margin-left: 0;
+                width: 100%;
+                padding: 70px 20px 20px;
             }
 
             .product-photo {
-                height: 62vh;
-                min-height: 360px;
+                height: auto;
+                min-height: 0;
             }
 
             .product-details {
@@ -376,6 +440,68 @@
 
             .related-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .brand-sidebar {
+                display: none;
+                position: fixed;
+                inset: 104px 0 0;
+                width: 100%;
+                height: auto;
+                z-index: 20;
+                overflow-y: auto;
+                background: #fff;
+            }
+
+            .brand-sidebar.open {
+                display: block !important;
+                padding: 22px 20px 28px;
+            }
+
+            .brand-sidebar.open .sidebar-logo {
+                display: block;
+                margin: 0 auto 18px;
+            }
+
+            .brand-sidebar.open .sidebar-nav {
+                display: grid;
+                gap: 13px;
+            }
+
+            .brand-sidebar.open .sidebar-nav a {
+                display: block;
+                font: 10px/1.25 var(--sans);
+                text-transform: uppercase;
+            }
+
+            .brand-mobile-toggle {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                width: 44px;
+                height: 44px;
+                padding: 0;
+                border: 0;
+                background: #fff;
+                font-size: 0;
+            }
+
+            .brand-mobile-toggle span {
+                display: block;
+                width: 20px;
+                height: 2px;
+                background: #000;
+            }
+
+            .product-header > a[aria-label="Chalice Craft home"] {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
             }
         }
     </style>
@@ -400,6 +526,7 @@
             aria-expanded="false"><span></span><span></span></button>
         <a class="back-link" href="index.html">← Back to shop</a>
         <a href="index.html" aria-label="Chalice Craft home"><img src="Image/Menu_Image.jpg" alt="Chalice Craft"></a>
+        <div class="product-cart-bar"><a class="product-cart-link" href="checkout.html" aria-label="Open shopping cart"><svg class="product-cart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg><span id="productCartCount">0</span></a></div>
     </header>
     <main class="product-page">
         <section class="product-media">
@@ -448,12 +575,14 @@
         document.querySelectorAll('.thumbnail').forEach(thumbnail => thumbnail.addEventListener('click', () => showImage(Number(thumbnail.dataset.image))));
         document.getElementById('previousImage').addEventListener('click', () => showImage(currentImage - 1));
         document.getElementById('nextImage').addEventListener('click', () => showImage(currentImage + 1));
+        document.getElementById('productCartCount').textContent = JSON.parse(localStorage.getItem('moriBag') || '[]').length;
         showImage(0);
         document.getElementById('addToBag').addEventListener('click', () => {
             const bag = JSON.parse(localStorage.getItem('moriBag') || '[]');
             bag.push(product);
             localStorage.setItem('moriBag', JSON.stringify(bag));
-            document.getElementById('addedMessage').textContent = 'Added to your bag.';
+            document.getElementById('productCartCount').textContent = bag.length;
+            document.getElementById('addedMessage').textContent = 'Product added successfully.';
         });
         const shuffled = [...products, ...recommendationDefaults].filter((item, index, all) => item.name !== product.name && all.findIndex(candidate => candidate.name === item.name) === index).sort(() => Math.random() - .5).slice(0, 4);
         document.getElementById('relatedGrid').innerHTML = shuffled.map(item => `<a class="related-card" href="product.html?name=${encodeURIComponent(item.name)}"><img src="${item.image}" alt="${item.name}"><h2>${item.name}</h2><p>$${Number(item.price).toFixed(2)}</p></a>`).join('');
