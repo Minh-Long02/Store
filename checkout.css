@@ -442,3 +442,50 @@
          font-size: 42px;
      }
  }
+
+ @media(max-width:700px) {
+     html, body {
+         max-width: 100%;
+         overflow-x: hidden;
+     }
+
+     .checkout-page > .home-sidebar {
+         display: none;
+     }
+
+     .checkout-page > .home-sidebar.open {
+         display: block;
+     }
+
+     .checkout-header {
+         display: grid;
+         grid-template-columns: 44px 1fr auto;
+         gap: 8px;
+         align-items: center;
+         height: 70px;
+         padding: 8px 14px;
+     }
+
+     .checkout-brand {
+         justify-self: center;
+         padding: 0;
+     }
+
+     .checkout-brand-image {
+         width: 112px;
+     }
+
+     .checkout-main {
+         min-height: 0;
+     }
+
+     .checkout-form,
+     .order-summary {
+         padding-left: 20px;
+         padding-right: 20px;
+     }
+
+     .checkout-form h1 {
+         font-size: clamp(48px, 16vw, 64px);
+     }
+ }

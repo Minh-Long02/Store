@@ -33,7 +33,7 @@
                     data-filter="earrings"
                     onclick="document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' })">earrings</button>
             </div>
-            <a href="#shop">hair clips</a><a href="#story">REWORKED VINTAGE DROP</a>
+            <a href="#shop">hair clips</a><a href="about.html">REWORKED VINTAGE DROP</a>
         </nav>
         <div class="sidebar-foot"><span>made slowly, worn daily</span><span>↓ scroll to explore</span></div>
     </aside>
@@ -41,7 +41,7 @@
     <header class="site-header">
         <button class="menu-button" id="menuToggle" aria-label="Open menu"
             aria-expanded="false"><span></span><span></span></button>
-        <nav class="desktop-nav"><a href="#shop">Shop</a><a href="#story">Our story</a>
+        <nav class="desktop-nav"><a href="#shop">Shop</a><a href="about.html">Our story</a>
         </nav>
         <img src="./Image/Menu_Image.jpg" alt="Chalice Craft" class="wordmark header-mark">
         <!-- <a class="wordmark" href="#top">Chalice Craft<span>°</span></a> -->
@@ -62,30 +62,45 @@
             </div>
             <div class="intro-visual" aria-label="Chalice Craft jewellery editorial"></div>
         </section>
-        <section class="about-home" id="about-us">
-            <div class="about-home-label">
-                <p class="eyebrow">About us / 02</p><span id="aboutTitle">Chalice Craft ♡</span>
-                <div class="about-gallery" id="aboutGallery"><img id="aboutGalleryImage"
-                        src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft product"><button
-                        class="gallery-arrow gallery-prev" id="galleryPrev"
-                        aria-label="Previous image">←</button><button class="gallery-arrow gallery-next"
-                        id="galleryNext" aria-label="Next image">→</button>
-                    <div class="gallery-dots" id="galleryDots"></div>
+        <section class="home-hero" aria-label="Featured collection">
+            <div class="hero-image-wrap">
+                <img id="homeHeroImage" class="hero-image" src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft featured collection">
+                <div class="hero-caption">
+                    <span>Chalice craft / featured</span>
+                    <h2>Quiet objects, made for everyday rituals.</h2>
                 </div>
             </div>
-            <div class="about-home-copy" id="aboutBody">
-                <p>Welcome to Chalice Craft ♡</p>
-                <p>Chalice Craft is a small studio inspired by our love for ceramics and handmade creations. We make
-                    unique jewelry, accessories, and little ceramic pieces by hand.</p>
-                <p>Our pieces are carefully crafted with attention to detail and thoroughly glazed on both sides. Each
-                    piece has its own little differences and character, making every creation truly one of a kind.</p>
-                <p>We always want you to have the best experience shopping with us. Your feedback helps us grow, so feel
-                    free to reach out via email at <a
-                        href="mailto:bychalice.craft@gmail.com">bychalice.craft@gmail.com</a> with any questions or
-                    suggestions.</p>
-                <p>Thank you for supporting handmade ♡</p>
+        </section>
+        <section class="feature-product-grid" aria-label="Featured products">
+            <a class="feature-card feature-card-left" href="collection.html?type=bracelets">
+                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=85" alt="Tide Pool Ring">
+                <span>Shop bracelet</span>
+            </a>
+            <a class="feature-card feature-card-right" href="collection.html?type=necklaces">
+                <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=85" alt="Pearl Study Studs">
+                <span>Shop necklace</span>
+            </a>
+        </section>
+        <section class="home-gallery-section" aria-label="Brand gallery">
+            <div class="home-gallery-nav">
+                <button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Previous image">←</button>
+                <button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Next image">→</button>
+            </div>
+            <div class="home-gallery" id="homeGallery">
+                <img src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft editorial 1">
+                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=85" alt="Chalice Craft editorial 2">
+                <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85" alt="Chalice Craft editorial 3">
             </div>
         </section>
+        <section class="featured-categories" aria-labelledby="featuredCategoriesTitle">
+            <div class="section-heading"><p class="eyebrow">Explore / 02</p><h2 id="featuredCategoriesTitle">Featured categories</h2></div>
+            <div class="category-grid">
+                <a class="category-card" href="collection.html?type=necklaces"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=85" alt="Necklaces"><span>Shop necklaces</span></a>
+                <a class="category-card" href="collection.html?type=bracelets"><img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=1000&q=85" alt="Bracelets"><span>Shop bracelets</span></a>
+                <a class="category-card" href="collection.html?type=rings"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1000&q=85" alt="Rings"><span>Shop rings</span></a>
+            </div>
+        </section>
+        <div class="home-catalog" hidden>
         <section class="toolbar">
             <span class="toolbar-label">Shop all pieces</span><button class="sort-button" id="sortButton">Sort:
                 Featured</button>
@@ -95,6 +110,7 @@
         </section>
         <section class="product-grid" id="productGrid"></section>
         <nav class="pagination" id="pagination" aria-label="Product pages"></nav>
+        </div>
         <!-- <section class="story-band" id="story">
             <div class="story-image"></div>
             <div class="story-copy">
@@ -110,7 +126,7 @@
     <footer><img src="./Image/Menu_Image.jpg" alt="Chalice Craft" class="wordmark footer-mark">
         <div class="footer-links">
             <div>
-                <p>Explore</p><a href="#shop">All pieces</a><a href="#about-us">About Us</a><a
+                <p>Explore</p><a href="#shop">All pieces</a><a href="about.html">About Us</a><a
                     href="shipping.html">Shipping</a>
             </div>
             <div>
@@ -265,6 +281,7 @@
             id="toastMessage">Success</span><button id="toastClose" aria-label="Close notification">×</button></div>
     <script src="script.js"></script>
     <script src="admin-sync.js"></script>
+    <script src="brand-menu.js"></script>
 </body>
 
 </html>

@@ -47,6 +47,39 @@ siteContent.about = siteContent.about.replace(/\bMori\b/g, 'Chalice Craft').repl
 siteContent.copyright = siteContent.copyright.replace(/\bMori Objects\b/g, 'Chalice Craft');
 if (siteContent.announcement === 'Free shipping on orders over $75 ✳ made slowly, worn daily') siteContent.announcement = 'Worldwide shipping ✳ rates calculated at checkout';
 if (siteContent.email === 'hello@mori.objects') siteContent.email = 'bychalice.craft@gmail.com';
+const homeHeroImage = document.getElementById('homeHeroImage');
+if (homeHeroImage && siteContent.homeHero) homeHeroImage.src = siteContent.homeHero;
+const featuredGallery = document.getElementById('featuredGallery');
+if (featuredGallery) {
+    const defaultGallery = [
+        'Image/HRbanner_Chalice%20craft.jpg',
+        'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1400&q=85',
+        'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=1400&q=85'
+    ];
+    const galleryImages = siteContent.homeGallery?.length ? siteContent.homeGallery : defaultGallery;
+    if (featuredGallery) {
+        featuredGallery.innerHTML = galleryImages.map((image, index) => `<img class="${index === 0 ? 'active' : ''}" src="${image}" alt="Chalice Craft featured image ${index + 1}">`).join('');
+        const dots = document.getElementById('featuredGalleryDots');
+        dots.innerHTML = galleryImages.map((image, index) => `<button class="${index === 0 ? 'active' : ''}" data-gallery-index="${index}" aria-label="Show image ${index + 1}"></button>`).join('');
+        let galleryIndex = 0;
+        const showGalleryImage = index => {
+            galleryIndex = (index + galleryImages.length) % galleryImages.length;
+            featuredGallery.querySelectorAll('img').forEach((image, imageIndex) => image.classList.toggle('active', imageIndex === galleryIndex));
+            dots.querySelectorAll('button').forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === galleryIndex));
+        };
+        dots.querySelectorAll('button').forEach(dot => dot.addEventListener('click', () => showGalleryImage(Number(dot.dataset.galleryIndex))));
+        if (galleryImages.length > 1) setInterval(() => showGalleryImage(galleryIndex + 1), 4500);
+    }
+}
+const homeGallery = document.getElementById('homeGallery');
+if (homeGallery) {
+    const amount = () => homeGallery.clientWidth;
+    document.getElementById('galleryPrev')?.addEventListener('click', () => homeGallery.scrollBy({ left: -amount(), behavior: 'smooth' }));
+    document.getElementById('galleryNext')?.addEventListener('click', () => homeGallery.scrollBy({ left: amount(), behavior: 'smooth' }));
+    let startX = 0;
+    homeGallery.addEventListener('touchstart', event => { startX = event.touches[0].clientX; }, { passive: true });
+    homeGallery.addEventListener('touchend', event => { const distance = event.changedTouches[0].clientX - startX; if (Math.abs(distance) > 50) homeGallery.scrollBy({ left: distance < 0 ? amount() : -amount(), behavior: 'smooth' }); }, { passive: true });
+}
 if (localStorage.getItem('moriRole') === 'admin') {
     sessionStorage.setItem('moriLoggedIn', 'true');
     sessionStorage.setItem('moriRole', 'admin');
