@@ -3,7 +3,8 @@
     const toastMessage = document.getElementById('toastMessage');
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.querySelector('.home-sidebar');
-    menuToggle.addEventListener('click', () => { const isOpen = mobileMenu.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', isOpen); });
+    menuToggle.addEventListener('click', () => { const isOpen = mobileMenu.classList.toggle('open'); menuToggle.setAttribute('aria-expanded', String(isOpen)); menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu'); });
+    menuToggle.dataset.menuBound = 'true';
     let toastTimer;
     function showToast(message) { toastMessage.textContent = message; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 3500); }
     document.getElementById('toastClose').addEventListener('click', () => { clearTimeout(toastTimer); toast.classList.remove('show'); });
