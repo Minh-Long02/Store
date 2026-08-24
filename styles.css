@@ -133,6 +133,15 @@ a {
     letter-spacing: .08em
 }
 
+.cart-icon {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    vertical-align: middle;
+}
+
 .cart-button b {
     background: var(--coral);
     display: inline-flex;
@@ -174,32 +183,6 @@ a {
 .collection-intro h1 em, .story-copy h2 em, .signup h2 em {
     font-weight: 500;
     color: var(--coral)
-}
-
-.intro-note {
-    width: 235px;
-    line-height: 1.55
-}
-
-.intro-note p {
-    margin: 0 0 30px
-}
-
-.intro-note span {
-    font: 10px var(--mono);
-    text-transform: uppercase;
-    letter-spacing: .1em
-}
-
-.toolbar {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    min-height: 65px;
-    padding: 0 4vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative
 }
 
 .filter-tabs {
@@ -1441,17 +1424,33 @@ footer {
     }
 
     .header-actions .auth-button {
-        display: none;
+        display: inline-flex;
+        align-items: center;
+        font-size: 8px;
+        letter-spacing: .04em;
     }
 
-    .header-actions .icon-button {
-        font-size: 22px;
+    .cart-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0;
+    }
+
+    .cart-button .cart-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .cart-button b {
+        width: 16px;
+        height: 16px;
+        margin-left: 0;
+        font-size: 9px;
     }
 
     .collection-intro h1 {
         max-width: 100%;
-        font-size: clamp(42px, 13vw, 58px);
-        overflow-wrap: break-word;
     }
 
     .intro-note {
@@ -1559,11 +1558,6 @@ footer {
 
     .collection-intro h1 {
         font-size: 42px;
-    }
-
-    .intro-note {
-        width: min(100%, 220px);
-        margin: 28px 0 0 auto;
     }
 
     .toolbar {
@@ -1798,7 +1792,7 @@ footer {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(90deg, rgba(17, 45, 42, .23), transparent 55%), url('Image/HRbanner_Chalice%20craft.jpg') center / cover, url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1800&q=88') center / cover;
+        background: linear-gradient(90deg, rgba(17, 45, 42, .23), transparent 55%), var(--intro-hero-image, url('Image/HRbanner_Chalice%20craft.jpg')) center / cover, url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1800&q=88') center / cover;
         filter: saturate(.75);
     }
 
@@ -1867,6 +1861,43 @@ footer {
 }
 
 @media(max-width:800px) {
+    .site-header {
+        grid-template-columns: 44px minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    .site-header > a[aria-label="Chalice Craft home"] {
+        grid-column: 2;
+        min-width: 0;
+    }
+
+    .site-header .header-actions {
+        position: static;
+        grid-column: 3;
+        display: flex;
+        align-items: center;
+        justify-self: end;
+        width: auto;
+        min-width: max-content;
+        gap: 8px;
+    }
+
+    .site-header .auth-button {
+        position: static;
+        right: auto;
+        display: inline-flex;
+        align-items: center;
+        flex: 0 0 auto;
+        font-size: 8px;
+    }
+
+    .site-header .cart-button {
+        position: static;
+        display: inline-flex;
+        align-items: center;
+        flex: 0 0 auto;
+    }
+
     footer .footer-mark {
         display: block;
         justify-self: start;
@@ -2342,8 +2373,10 @@ footer {
     position: relative;
     display: block;
     width: 100%;
+    max-width: 100%;
     height: min(68vh, 640px);
     overflow: hidden;
+    background: #fff;
 }
 
 .home-hero-slider .home-gallery img {
@@ -2351,7 +2384,9 @@ footer {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     opacity: 0;
     transition: opacity .7s ease;
     scroll-snap-align: none;
@@ -2398,5 +2433,26 @@ footer {
     .home-hero-slider .home-gallery {
         height: min(58vh, 520px);
         min-height: 350px;
+    }
+}
+
+@media(max-width:760px) {
+    .collection-intro {
+        min-height: 680px;
+        height: 680px;
+    }
+
+    .collection-intro .intro-visual {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        bottom: 9vh;
+        width: min(78vw, 340px);
+        height: min(48vh, 400px);
+        margin: 0;
+        transform: translateX(-50%) rotate(2deg);
+        background: var(--intro-hero-image, url('Image/HRbanner_Chalice%20craft.jpg')) center / cover;
+        box-shadow: 10px 10px 0 var(--lime);
     }
 }

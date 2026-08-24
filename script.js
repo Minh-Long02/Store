@@ -89,33 +89,29 @@ if (homeGallery) {
     showImage(0);
     restartAutoSlide();
 }
+const introHero = document.querySelector('.collection-intro');
+if (introHero) {
+    const introImages = siteContent.homeGallery?.length ? siteContent.homeGallery : [
+        'Image/HRbanner_Chalice%20craft.jpg',
+        'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1400&q=85',
+        'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1400&q=85',
+        'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=1400&q=85',
+        'https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=1400&q=85'
+    ];
+    let introIndex = 0;
+    const showIntroImage = index => {
+        introIndex = (index + introImages.length) % introImages.length;
+        introHero.style.setProperty('--intro-hero-image', `url("${introImages[introIndex]}")`);
+    };
+    showIntroImage(0);
+    if (introImages.length > 1) setInterval(() => showIntroImage(introIndex + 1), 4500);
+}
 if (localStorage.getItem('moriRole') === 'admin') {
     sessionStorage.setItem('moriLoggedIn', 'true');
     sessionStorage.setItem('moriRole', 'admin');
 }
 let currentFilter = 'all', currentSort = 'featured', currentPage = 1, bag = [];
 const grid = document.getElementById('productGrid');
-const searchField = document.getElementById('searchInput');
-const searchResults = document.getElementById('searchResults');
-function renderSearchResults(query = '') {
-    const keyword = query.trim().toLowerCase();
-    if (!keyword) { searchResults.innerHTML = ''; return; }
-    const matches = products.filter(product => [product.name, product.type, product.meta, product.tag].filter(Boolean).join(' ').toLowerCase().includes(keyword));
-    searchResults.innerHTML = matches.length ? matches.map(product => `<button class="search-result" data-product-index="${products.indexOf(product)}"><img src="${product.image}" alt="${product.name}"><span><strong>${product.name}</strong><small>${product.meta}</small></span><b>$${product.price.toFixed(2)}</b></button>`).join('') : '<p class="search-empty">No pieces found. Try another keyword.</p>';
-}
-searchField.addEventListener('input', () => renderSearchResults(searchField.value));
-searchResults.addEventListener('click', event => {
-    const result = event.target.closest('[data-product-index]');
-    if (!result) return;
-    currentFilter = 'all';
-    currentPage = Math.floor(Number(result.dataset.productIndex) / 8) + 1;
-    document.querySelectorAll('#filterTabs button').forEach(button => button.classList.toggle('active', button.dataset.filter === 'all'));
-    render();
-    searchOverlay.classList.remove('open');
-    searchField.value = '';
-    searchResults.innerHTML = '';
-    grid.scrollIntoView({ behavior: 'smooth' });
-});
 function render() {
     let list = products.filter(p => currentFilter === 'all' || p.type === currentFilter);
     if (currentSort === 'low') list.sort((a, b) => a.price - b.price);
@@ -135,5 +131,5 @@ function addToBag(product) { bag.push(product); updateBag(); document.getElement
 function updateBag() { localStorage.setItem('moriBag', JSON.stringify(bag)); document.getElementById('cartCount').textContent = bag.length; document.getElementById('drawerCount').textContent = bag.length; document.getElementById('cartTotal').textContent = `$${bag.reduce((sum, p) => sum + p.price, 0).toFixed(2)}`; document.getElementById('cartItems').innerHTML = bag.length ? bag.map((p, i) => `<div class="cart-line"><img src="${p.image}" alt="${p.name}"><div><h3>${p.name}</h3><p>$${p.price.toFixed(2)}</p></div><button class="remove-item" data-remove="${i}">×</button></div>`).join('') : '<p class="empty-cart">Your bag is waiting for something special.</p>'; document.querySelectorAll('.remove-item').forEach(b => b.addEventListener('click', () => { bag.splice(b.dataset.remove, 1); updateBag() })) }
 document.getElementById('filterTabs').addEventListener('click', e => { if (e.target.tagName !== 'BUTTON') return; document.querySelectorAll('#filterTabs button').forEach(b => b.classList.remove('active')); e.target.classList.add('active'); currentFilter = e.target.dataset.filter; render() }); document.getElementById('sortButton').addEventListener('click', () => document.getElementById('sortMenu').classList.toggle('open')); document.getElementById('sortMenu').addEventListener('click', e => { if (e.target.tagName !== 'BUTTON') return; currentSort = e.target.dataset.sort; document.getElementById('sortButton').textContent = `Sort: ${e.target.textContent.split(':')[0]}`; document.getElementById('sortMenu').classList.remove('open'); render() });
 const loginModal = document.getElementById('loginModal'); const loginForm = document.getElementById('loginForm'); const loginError = document.getElementById('loginError'); const loginToggle = document.getElementById('loginToggle'); function openLogin() { loginModal.classList.add('open'); loginError.textContent = ''; document.getElementById('username').focus() } function closeLogin() { loginModal.classList.remove('open') } loginToggle.addEventListener('click', openLogin); document.getElementById('closeLogin').addEventListener('click', closeLogin); loginModal.addEventListener('click', e => { if (e.target === loginModal) closeLogin() }); loginForm.addEventListener('submit', e => { e.preventDefault(); const username = document.getElementById('username').value.trim(); const password = document.getElementById('password').value; const accounts = JSON.parse(localStorage.getItem('moriAccounts') || '[]'); const adminPassword = localStorage.getItem('moriAdminPassword') || 'admin123'; if (username === 'admin' && password === adminPassword) { sessionStorage.setItem('moriLoggedIn', 'true'); sessionStorage.setItem('moriRole', 'admin'); localStorage.setItem('moriRole', 'admin'); showToast('Admin login successful'); window.location.href = 'dashboard.html' } else { const account = accounts.find(item => item.username === username && item.password === password); if (account) { localStorage.setItem('moriCurrentUser', JSON.stringify(account)); sessionStorage.setItem('moriLoggedIn', 'true'); sessionStorage.setItem('moriRole', 'user'); loginToggle.textContent = '♙'; loginToggle.setAttribute('aria-label', 'Open profile'); closeLogin(); showToast('Welcome back'); } else { loginError.textContent = 'Please enter a valid username and password.'; document.getElementById('password').focus() } } }); if (sessionStorage.getItem('moriLoggedIn') === 'true') { loginToggle.textContent = '♙'; loginToggle.setAttribute('aria-label', 'Open profile') }
-bag = JSON.parse(localStorage.getItem('moriBag') || '[]'); const searchOverlay = document.getElementById('searchOverlay'); document.getElementById('searchToggle').addEventListener('click', () => { searchOverlay.classList.add('open'); document.getElementById('searchInput').focus() }); document.getElementById('closeSearch').addEventListener('click', () => searchOverlay.classList.remove('open')); document.getElementById('cartToggle').addEventListener('click', () => { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('scrim').classList.add('open') }); function closeDrawer() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('scrim').classList.remove('open') } document.getElementById('closeCart').addEventListener('click', closeDrawer); document.getElementById('scrim').addEventListener('click', closeDrawer); document.getElementById('checkoutButton').addEventListener('click', () => { window.location.href = 'checkout.html' }); updateBag(); render();
+bag = JSON.parse(localStorage.getItem('moriBag') || '[]'); document.getElementById('cartToggle').addEventListener('click', () => { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('scrim').classList.add('open') }); function closeDrawer() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('scrim').classList.remove('open') } document.getElementById('closeCart').addEventListener('click', closeDrawer); document.getElementById('scrim').addEventListener('click', closeDrawer); document.getElementById('checkoutButton').addEventListener('click', () => { window.location.href = 'checkout.html' }); updateBag(); render();
 const profileDrawer = document.getElementById('profileDrawer'); const profileForm = document.getElementById('profileForm'); const profileError = document.getElementById('profileError'); const profileFields = { username: document.getElementById('profileUsername'), phone: document.getElementById('profilePhone'), country: document.getElementById('profileCountry') }; const savedAccounts = JSON.parse(localStorage.getItem('moriAccounts') || '[]'); let currentUser = JSON.parse(localStorage.getItem('moriCurrentUser') || 'null'); if (!currentUser && sessionStorage.getItem('moriRole') === 'user') currentUser = savedAccounts[savedAccounts.length - 1] || null; if (currentUser) localStorage.setItem('moriCurrentUser', JSON.stringify(currentUser)); function setProfileIcon() { loginToggle.textContent = '♙'; loginToggle.setAttribute('aria-label', 'Open profile'); } function openProfile() { if (!currentUser) return openLogin(); profileFields.username.value = currentUser.username; profileFields.phone.value = currentUser.phone.replace(/^\+\d+\s*/, ''); profileFields.country.value = currentUser.country || 'VN'; profileDrawer.classList.add('open'); document.getElementById('scrim').classList.add('open'); } function closeProfile() { profileDrawer.classList.remove('open'); document.getElementById('scrim').classList.remove('open'); } function saveCurrentUser(user) { currentUser = user; localStorage.setItem('moriCurrentUser', JSON.stringify(user)); setProfileIcon(); } loginToggle.addEventListener('click', event => { if (currentUser) { event.stopImmediatePropagation(); openProfile(); } }, true); document.getElementById('closeProfile').addEventListener('click', closeProfile); document.getElementById('scrim').addEventListener('click', closeProfile); profileForm.addEventListener('submit', event => { event.preventDefault(); const accounts = JSON.parse(localStorage.getItem('moriAccounts') || '[]'); const duplicate = accounts.some(account => account.username.toLowerCase() === profileFields.username.value.trim().toLowerCase() && account.username !== currentUser.username); if (duplicate) { profileError.textContent = 'That username is already taken.'; return; } const code = profileFields.country.selectedOptions[0].dataset.code || '+'; const updated = { ...currentUser, username: profileFields.username.value.trim(), phone: `${code} ${profileFields.phone.value.trim()}`, country: profileFields.country.value }; const accountIndex = accounts.findIndex(account => account.username === currentUser.username); if (accountIndex >= 0) accounts[accountIndex] = updated; localStorage.setItem('moriAccounts', JSON.stringify(accounts)); saveCurrentUser(updated); closeProfile(); showToast('Profile updated successfully'); }); if (currentUser) setProfileIcon();

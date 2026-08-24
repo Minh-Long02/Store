@@ -14,7 +14,7 @@
 </head>
 
 <body class="admin-page">
-    <header class="admin-header"><a class="wordmark" href="index.html">Chalice Craft<span>°</span></a>
+    <header class="admin-header"><a class="wordmark" href="index.html" aria-label="Chalice Craft home"><img src="./Image/Menu-Image.jpg" alt="Menu-Image"></a>
         <div><span class="admin-label">Admin dashboard</span><button id="logoutButton">Đăng xuất</button></div>
     </header>
     <main class="admin-main">
@@ -39,8 +39,10 @@
                     <h2>Nội dung website</h2>
                 </div><button class="primary-button" id="saveContentButton">Lưu nội dung</button>
             </div>
-            <form id="contentForm" class="content-form"><label>Homepage hero image URL<input id="contentHomeHero" type="url" placeholder="Optional image URL"><input id="contentHomeHeroUpload" type="file" accept="image/*"></label><label>Thông báo trên đầu trang<textarea
-                        id="contentAnnouncement" required></textarea></label><label>About us<textarea id="contentAbout"
+            <form id="contentForm" class="content-form"><label>Homepage hero image URL<input id="contentHomeHero"
+                        type="url" placeholder="Optional image URL"><input id="contentHomeHeroUpload" type="file"
+                        accept="image/*"></label><label>Thông báo trên đầu trang<textarea id="contentAnnouncement"
+                        required></textarea></label><label>About us<textarea id="contentAbout"
                         required></textarea></label><label>Email liên hệ<input id="contentEmail" type="email"
                         required></label><label>Copyright<input id="contentCopyright" required></label><label>Khu vực
                     hoạt động<input id="contentLocation" required></label><label>Thông tin pháp lý<input
@@ -54,12 +56,7 @@
                 id="closeProductModal">×</button>
             <p class="eyebrow">Catalogue</p>
             <h2 id="productModalTitle">Thêm sản phẩm</h2><input type="hidden" id="productId"><label>Tên sản phẩm<input
-                    id="productName" required></label><label>Danh mục<select id="productType">
-                    <option value="necklaces">Necklaces</option>
-                    <option value="rings">Rings</option>
-                    <option value="earrings">Earrings</option>
-                    <option value="bracelets">Bracelets</option>
-                </select></label><label>Mô tả ngắn<input id="productMeta" required></label><label>Giá USD<input
+                    id="productName" required></label><label>Danh mục<input id="productType" list="productCategories" required><datalist id="productCategories"><option value="necklaces"><option value="rings"><option value="earrings"><option value="bracelets"></datalist></label><label>Mô tả ngắn<input id="productMeta" required></label><label>Giá USD<input
                     id="productPrice" type="number" min="0" step="0.01" required></label><label>URL hình ảnh<input
                     id="productImage" type="url" required></label><label>Nhãn sản phẩm<input id="productTag"
                     placeholder="New / Limited (không bắt buộc)"></label>

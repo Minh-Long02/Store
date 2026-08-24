@@ -7,6 +7,12 @@ let content = JSON.parse(localStorage.getItem('moriContent') || 'null') || { ann
 content.aboutImages = content.aboutImages || ['Image/HRbanner_Chalice%20craft.jpg'];
 const $ = id => document.getElementById(id);
 document.documentElement.lang = 'en';
+const categoryOptions = new Set(['necklaces', 'rings', 'earrings', 'bracelets', ...JSON.parse(localStorage.getItem('moriCategories') || '[]'), ...products.map(product => product.type).filter(Boolean)]);
+const categoryList = $('productCategories');
+if (categoryList) {
+    categoryList.innerHTML = '';
+    categoryOptions.forEach(category => categoryList.append(new Option(category, category)));
+}
 const adminHeaderActions = document.querySelector('.admin-header > div');
 const adminProfileButton = document.createElement('button');
 adminProfileButton.textContent = 'Profile';
@@ -30,7 +36,7 @@ document.getElementById('addProductButton').textContent = '+ Add product';
 document.querySelectorAll('.admin-panel .panel-head h2')[0].textContent = 'Products';
 document.querySelectorAll('.admin-panel .panel-head h2')[1].textContent = 'Website content';
 document.getElementById('saveContentButton').textContent = 'Save content';
-    const contentLabels = { contentHomeHero: 'Homepage hero image URL', contentAnnouncement: 'Announcement bar', contentAbout: 'About Us', contentEmail: 'Contact email', contentCopyright: 'Copyright', contentLocation: 'Operating region', contentLegal: 'Legal information' }; Object.entries(contentLabels).forEach(([id, text]) => { const field = $(id); const label = field?.closest('label'); if (label) label.firstChild.textContent = text; });
+const contentLabels = { contentHomeHero: 'Homepage hero image URL', contentAnnouncement: 'Announcement bar', contentAbout: 'About Us', contentEmail: 'Contact email', contentCopyright: 'Copyright', contentLocation: 'Operating region', contentLegal: 'Legal information' }; Object.entries(contentLabels).forEach(([id, text]) => { const field = $(id); const label = field?.closest('label'); if (label) label.firstChild.textContent = text; });
 ['Product name', 'Category', 'Short description', 'Price (USD)', 'Image URL', 'Product tag'].forEach((text, index) => { const label = document.querySelectorAll('#productForm > label')[index]; if (label) label.firstChild.textContent = text; });
 document.querySelector('#productForm .primary-button').textContent = 'Save product';
 document.getElementById('logoutButton').addEventListener('click', () => { localStorage.removeItem('moriRole'); localStorage.removeItem('moriLoggedIn'); }, true);
