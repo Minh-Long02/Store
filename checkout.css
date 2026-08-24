@@ -7,6 +7,42 @@
      min-height: 100vh
  }
 
+ .checkout-page > .home-sidebar {
+     position: fixed;
+     inset: 0 auto 0 0;
+     width: 194px;
+     background: white;
+     border-right: 1px solid var(--line);
+     padding: 25px 22px 20px;
+     z-index: 8;
+ }
+
+ .checkout-page > .home-sidebar .sidebar-logo img {
+     display: block;
+     width: 169px;
+     height: 79px;
+     object-fit: contain;
+     margin-top: 64px;
+     margin-bottom: -19px;
+ }
+
+ .checkout-page > .home-sidebar .sidebar-nav {
+     display: flex;
+     flex-direction: column;
+     gap: 13px;
+ }
+
+ .checkout-page > .home-sidebar .sidebar-nav a,
+ .checkout-page > .home-sidebar .sidebar-foot {
+     font: 9px var(--mono);
+     text-transform: uppercase;
+ }
+
+ .checkout-page > .checkout-header,
+ .checkout-page > .checkout-main {
+     margin-left: 194px;
+ }
+
  .checkout-header {
      height: 90px;
      padding: 0 6vw;
@@ -16,8 +52,19 @@
      justify-content: space-between
  }
 
- .checkout-header .wordmark {
-     font-size: 36px
+ .checkout-brand {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     padding: 0;
+     background: transparent;
+ }
+
+ .checkout-brand-image {
+     display: block;
+     width: clamp(160px, 18vw, 260px);
+     height: auto;
+     object-fit: contain;
  }
 
  .back-link {
@@ -270,16 +317,49 @@
  }
 
  @media(max-width:700px) {
+     .checkout-page > .home-sidebar {
+         position: static;
+         width: auto;
+         padding: 18px 20px;
+         border-right: 0;
+     }
+
+     .checkout-page > .home-sidebar .sidebar-logo {
+         margin: 0 auto 18px;
+     }
+
+     .checkout-page > .home-sidebar .sidebar-logo img {
+         width: 125px;
+         height: auto;
+         margin: 0 auto;
+     }
+
+     .checkout-page > .home-sidebar .sidebar-nav {
+         flex-direction: row;
+         flex-wrap: wrap;
+         gap: 12px 18px;
+     }
+
+     .checkout-page > .home-sidebar .sidebar-foot {
+         display: none;
+     }
+
+     .checkout-page > .checkout-header,
+     .checkout-page > .checkout-main {
+         margin-left: 0;
+     }
+
      .checkout-header {
          height: 72px;
          padding: 0 20px
-         
-         /* padding: 41px */
      }
 
-     .checkout-header .wordmark {
-         font-size: 32px;
-         padding-top: 25px
+     .checkout-brand {
+         padding: 4px 8px;
+     }
+
+     .checkout-brand-image {
+         width: clamp(120px, 38vw, 180px);
      }
 
      .back-link {
@@ -319,5 +399,46 @@
 
      .order-success h2 {
          font-size: 60px
+     }
+ }
+
+ @media (max-width: 480px) {
+     .checkout-header {
+         padding: 0 16px;
+     }
+
+     .checkout-header .wordmark {
+         font-size: 28px;
+         padding-top: 18px;
+     }
+
+     .checkout-form {
+         padding: 42px 18px 52px;
+     }
+
+     .checkout-form h1 {
+         font-size: 46px;
+         margin-bottom: 30px;
+     }
+
+     .order-summary {
+         padding: 42px 18px 58px;
+     }
+
+     .summary-item {
+         gap: 10px;
+     }
+
+     .summary-item img {
+         width: 64px;
+         height: 76px;
+     }
+
+     .summary-item h3 {
+         font-size: 14px;
+     }
+
+     .order-success h2 {
+         font-size: 42px;
      }
  }
