@@ -16,6 +16,12 @@
             const isOpen = sidebar.classList.toggle('open');
             toggle.setAttribute('aria-expanded', isOpen);
         });
+    } else if (sidebar && header) {
+        const toggle = header.querySelector('.brand-mobile-toggle');
+        toggle?.addEventListener('click', () => {
+            const isOpen = sidebar.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', isOpen);
+        });
     }
     const categoryLabels = {
         necklaces: 'Necklaces',

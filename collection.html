@@ -50,6 +50,7 @@
         .empty { grid-column: 1 / -1; padding: 40px 0; font: 12px var(--mono); }
         @media (max-width: 800px) { .collection-sidebar { position: static; width: auto; height: auto; padding: 18px 20px; } .sidebar-logo { margin: 0 auto 18px; } .sidebar-logo img { width: 125px; } .sidebar-nav { display: flex; flex-wrap: wrap; gap: 12px 18px; } .sidebar-foot { display: none; } .announcement, .collection-header, .collection-intro, .product-grid { margin-left: 0; } .collection-header { height: 70px; padding: 0 20px; } .collection-header img { width: 120px; max-height: 54px; } .collection-intro { padding: 45px 20px 35px; } .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 10px; padding: 0 20px 60px; } }
     </style>
+    <link rel="stylesheet" href="brand-footer.css">
 </head>
 
 <body>
@@ -70,6 +71,7 @@
     </aside>
     <div class="announcement">Free worldwide shipping on orders over $80</div>
     <header class="collection-header">
+        <button class="brand-mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
         <img src="Image/Menu_Image.jpg" alt="Chalice Craft">
         <span class="collection-count" id="collectionCount"></span>
     </header>
@@ -108,6 +110,11 @@
             button.textContent = 'Added to bag';
         }));
     </script>
+    <footer class="brand-footer">
+        <img class="brand-footer-logo" src="Image/Menu_Image.jpg" alt="Chalice Craft">
+        <div class="brand-footer-links"><div><h2>Explore</h2><a href="index.html">Home</a><a href="about.html">About Us</a><a href="shipping.html">Shipping</a></div><div><h2>Contact us</h2><a href="mailto:bychalice.craft@gmail.com">bychalice.craft@gmail.com</a><a href="https://www.instagram.com/chalice.craft/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div>
+        <div class="brand-footer-bottom"><span>© 2026 Chalice Craft</span><span>Ho Chi Minh City / Worldwide</span><span>Privacy & terms</span></div>
+    </footer>
     <script src="brand-menu.js"></script>
 </body>
 

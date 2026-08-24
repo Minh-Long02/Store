@@ -73,12 +73,20 @@ if (featuredGallery) {
 }
 const homeGallery = document.getElementById('homeGallery');
 if (homeGallery) {
-    const amount = () => homeGallery.clientWidth;
-    document.getElementById('galleryPrev')?.addEventListener('click', () => homeGallery.scrollBy({ left: -amount(), behavior: 'smooth' }));
-    document.getElementById('galleryNext')?.addEventListener('click', () => homeGallery.scrollBy({ left: amount(), behavior: 'smooth' }));
+    const galleryImages = [...homeGallery.querySelectorAll('img')];
+    let galleryIndex = 0;
+    let autoSlideTimer;
+    const showImage = index => { galleryIndex = (index + galleryImages.length) % galleryImages.length; galleryImages.forEach((image, imageIndex) => image.classList.toggle('active', imageIndex === galleryIndex)); };
+    const restartAutoSlide = () => { clearInterval(autoSlideTimer); if (galleryImages.length > 1) autoSlideTimer = setInterval(() => showImage(galleryIndex + 1), 4500); };
+    document.getElementById('galleryPrev')?.addEventListener('click', () => { showImage(galleryIndex - 1); restartAutoSlide(); });
+    document.getElementById('galleryNext')?.addEventListener('click', () => { showImage(galleryIndex + 1); restartAutoSlide(); });
     let startX = 0;
-    homeGallery.addEventListener('touchstart', event => { startX = event.touches[0].clientX; }, { passive: true });
-    homeGallery.addEventListener('touchend', event => { const distance = event.changedTouches[0].clientX - startX; if (Math.abs(distance) > 50) homeGallery.scrollBy({ left: distance < 0 ? amount() : -amount(), behavior: 'smooth' }); }, { passive: true });
+    homeGallery.addEventListener('touchstart', event => { startX = event.touches[0].clientX; clearInterval(autoSlideTimer); }, { passive: true });
+    homeGallery.addEventListener('touchend', event => { const distance = event.changedTouches[0].clientX - startX; if (Math.abs(distance) > 50) showImage(galleryIndex + (distance < 0 ? 1 : -1)); restartAutoSlide(); }, { passive: true });
+    homeGallery.addEventListener('mouseenter', () => clearInterval(autoSlideTimer));
+    homeGallery.addEventListener('mouseleave', restartAutoSlide);
+    showImage(0);
+    restartAutoSlide();
 }
 if (localStorage.getItem('moriRole') === 'admin') {
     sessionStorage.setItem('moriLoggedIn', 'true');

@@ -39,7 +39,7 @@
                     <h2>Nội dung website</h2>
                 </div><button class="primary-button" id="saveContentButton">Lưu nội dung</button>
             </div>
-            <form id="contentForm" class="content-form"><label>Homepage hero image URL<input id="contentHomeHero" type="url" placeholder="Optional image URL"></label><label>Thông báo trên đầu trang<textarea
+            <form id="contentForm" class="content-form"><label>Homepage hero image URL<input id="contentHomeHero" type="url" placeholder="Optional image URL"><input id="contentHomeHeroUpload" type="file" accept="image/*"></label><label>Thông báo trên đầu trang<textarea
                         id="contentAnnouncement" required></textarea></label><label>About us<textarea id="contentAbout"
                         required></textarea></label><label>Email liên hệ<input id="contentEmail" type="email"
                         required></label><label>Copyright<input id="contentCopyright" required></label><label>Khu vực
@@ -71,6 +71,13 @@
     <script>
         const savedContent = JSON.parse(localStorage.getItem('moriContent') || '{}');
         document.getElementById('contentHomeHero').value = savedContent.homeHero || '';
+        document.getElementById('contentHomeHeroUpload').addEventListener('change', event => {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => { document.getElementById('contentHomeHero').value = reader.result; };
+            reader.readAsDataURL(file);
+        });
         document.getElementById('saveContentButton').addEventListener('click', () => {
             const content = JSON.parse(localStorage.getItem('moriContent') || '{}');
             content.homeHero = document.getElementById('contentHomeHero').value.trim();

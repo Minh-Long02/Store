@@ -2233,3 +2233,33 @@ footer {
         height: 420px;
     }
 }
+
+.home-hero-slider .home-gallery {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: min(68vh, 640px);
+    overflow: hidden;
+}
+
+.home-hero-slider .home-gallery img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity .7s ease;
+    scroll-snap-align: none;
+}
+
+.home-hero-slider .home-gallery img.active {
+    opacity: 1;
+}
+
+@media(max-width:760px) {
+    .home-hero-slider .home-gallery {
+        height: min(58vh, 520px);
+        min-height: 350px;
+    }
+}

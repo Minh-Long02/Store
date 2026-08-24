@@ -114,11 +114,90 @@
                 font-size: 9px;
             }
         }
+            .shipping-page > .home-sidebar {
+                position: fixed;
+                inset: 0 auto 0 0;
+                width: 194px;
+                padding: 25px 22px 20px;
+                background: #fff;
+                border-right: 1px solid var(--line);
+                z-index: 8;
+            }
+
+            .shipping-page > .home-sidebar .sidebar-logo img {
+                display: block;
+                width: 169px;
+                height: 79px;
+                object-fit: contain;
+                margin-top: 64px;
+                margin-bottom: -19px;
+            }
+
+            .shipping-page > .home-sidebar .sidebar-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 13px;
+            }
+
+            .shipping-page > .home-sidebar .sidebar-nav a,
+            .shipping-page > .home-sidebar .sidebar-foot {
+                font: 9px var(--mono);
+                text-transform: uppercase;
+            }
+
+            .shipping-page > .shipping-header,
+            .shipping-page > .shipping-main {
+                margin-left: 194px;
+            }
+
+            @media (max-width: 600px) {
+                .shipping-page > .home-sidebar {
+                    position: static;
+                    width: auto;
+                    padding: 18px 20px;
+                    border-right: 0;
+                }
+
+                .shipping-page > .home-sidebar .sidebar-logo {
+                    margin: 0 auto 18px;
+                }
+
+                .shipping-page > .home-sidebar .sidebar-logo img {
+                    width: 125px;
+                    height: auto;
+                    margin: 0 auto;
+                }
+
+                .shipping-page > .home-sidebar .sidebar-nav {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 12px 18px;
+                }
+
+                .shipping-page > .home-sidebar .sidebar-foot {
+                    display: none;
+                }
+
+                .shipping-page > .shipping-header,
+                .shipping-page > .shipping-main {
+                    margin-left: 0;
+                }
+            }
+
     </style>
+    <link rel="stylesheet" href="brand-footer.css">
 </head>
 
 <body class="shipping-page">
+    <aside class="home-sidebar">
+        <a class="sidebar-logo" href="index.html"><img src="./Image/Menu_Image.jpg" alt="Chalice Craft"></a>
+        <nav class="sidebar-nav" aria-label="Shop collections">
+            <a href="collection.html?type=bracelets">Green ring drop</a><a href="collection.html?type=all">New in</a><a href="index.html#shop">Shop all</a><a href="collection.html?type=necklaces">Necklaces</a><a href="collection.html?type=bracelets">Bracelets</a><a href="collection.html?type=rings">Rings</a><a href="collection.html?type=earrings">Earrings</a><a href="collection.html?type=earrings">Hair clips</a><a href="about.html">Reworked vintage drop</a>
+        </nav>
+        <div class="sidebar-foot"><span>Made slowly, worn daily</span><span>↓ Scroll to explore</span></div>
+    </aside>
     <header class="shipping-header">
+        <button class="brand-mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
         <a class="wordmark" href="index.html">Chalice Craft<span>°</span></a>
         <a class="back-link" href="index.html">← Back to shop</a>
     </header>
@@ -137,6 +216,11 @@
         </div>
         <a class="shipping-back" href="checkout.html">Continue to checkout ↗</a>
     </main>
+    <footer class="brand-footer">
+        <img class="brand-footer-logo" src="Image/Menu_Image.jpg" alt="Chalice Craft">
+        <div class="brand-footer-links"><div><h2>Explore</h2><a href="index.html">Home</a><a href="about.html">About Us</a><a href="shipping.html">Shipping</a></div><div><h2>Contact us</h2><a href="mailto:bychalice.craft@gmail.com">bychalice.craft@gmail.com</a><a href="https://www.instagram.com/chalice.craft/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div>
+        <div class="brand-footer-bottom"><span>© 2026 Chalice Craft</span><span>Ho Chi Minh City / Worldwide</span><span>Privacy & terms</span></div>
+    </footer>
     <script src="brand-menu.js"></script>
 </body>
 

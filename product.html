@@ -26,7 +26,7 @@
         .product-header { height: 86px; margin-left: 205px; padding: 0 4vw; display: flex; align-items: center; justify-content: space-between; background: white; }
         .product-header img { width: 150px; max-height: 66px; object-fit: contain; }
         .back-link { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
-        .product-page { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: 38px; padding: 38px 5vw 56px; }
+        .product-page { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: 38px; padding: 12px 5vw 56px; }
         .product-media { min-width: 0; }
         .product-photo { position: relative; aspect-ratio: 1 / 1.08; background: #fff; overflow: hidden; }
         .product-photo > img { display: block; width: 100%; height: 100%; object-fit: contain; }
@@ -39,7 +39,7 @@
         .thumbnail { flex: 0 0 66px; height: 76px; padding: 0; border: 1px solid transparent; background: #fff; cursor: pointer; }
         .thumbnail.active { border-color: var(--ink); }
         .thumbnail img { width: 100%; height: 100%; object-fit: cover; }
-        .product-details { padding: clamp(40px, 8vw, 120px) clamp(28px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; background: white; }
+        .product-details { padding: 24px clamp(28px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; background: white; }
         .product-kicker { font: 10px var(--mono); letter-spacing: .14em; text-transform: uppercase; margin: 0 0 18px; }
         h1 { margin: 0 0 16px; font: 500 clamp(40px, 5vw, 76px)/.98 var(--serif); }
         .product-meta { margin: 0 0 28px; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; opacity: .65; }
@@ -58,6 +58,7 @@
         .related-card:hover img { opacity: .78; }
         @media (max-width: 700px) { .brand-sidebar { position: static; width: auto; padding: 18px 20px; } .sidebar-logo { margin: 0 auto 18px; } .sidebar-logo img { width: 125px; } .sidebar-nav { display: flex; flex-wrap: wrap; gap: 12px 18px; } .sidebar-foot { display: none; } .brand-bar, .product-header, .product-page, .related-products { margin-left: 0; } .product-header { height: 70px; padding: 0 20px; } .product-header img { width: 120px; max-height: 54px; } .product-page { display: block; padding: 20px; } .product-photo { height: 62vh; min-height: 360px; } .product-details { padding: 42px 0 56px; } .related-products { padding: 38px 20px 60px; } .related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     </style>
+    <link rel="stylesheet" href="brand-footer.css">
 </head>
 
 <body>
@@ -70,6 +71,7 @@
     </aside>
     <div class="brand-bar">Free worldwide shipping on orders over $80</div>
     <header class="product-header">
+        <button class="brand-mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
         <a class="back-link" href="index.html">← Back to shop</a>
         <img src="Image/Menu_Image.jpg" alt="Chalice Craft">
     </header>
@@ -124,6 +126,11 @@
         const shuffled = [...products, ...recommendationDefaults].filter((item, index, all) => item.name !== product.name && all.findIndex(candidate => candidate.name === item.name) === index).sort(() => Math.random() - .5).slice(0, 4);
         document.getElementById('relatedGrid').innerHTML = shuffled.map(item => `<a class="related-card" href="product.html?name=${encodeURIComponent(item.name)}"><img src="${item.image}" alt="${item.name}"><h2>${item.name}</h2><p>$${Number(item.price).toFixed(2)}</p></a>`).join('');
     </script>
+    <footer class="brand-footer">
+        <img class="brand-footer-logo" src="Image/Menu_Image.jpg" alt="Chalice Craft">
+        <div class="brand-footer-links"><div><h2>Explore</h2><a href="index.html">Home</a><a href="about.html">About Us</a><a href="shipping.html">Shipping</a></div><div><h2>Contact us</h2><a href="mailto:bychalice.craft@gmail.com">bychalice.craft@gmail.com</a><a href="https://www.instagram.com/chalice.craft/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div>
+        <div class="brand-footer-bottom"><span>© 2026 Chalice Craft</span><span>Ho Chi Minh City / Worldwide</span><span>Privacy & terms</span></div>
+    </footer>
     <script src="brand-menu.js"></script>
 </body>
 

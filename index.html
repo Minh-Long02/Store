@@ -12,6 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="brand-footer.css">
 </head>
 
 <body>
@@ -62,15 +63,6 @@
             </div>
             <div class="intro-visual" aria-label="Chalice Craft jewellery editorial"></div>
         </section>
-        <section class="home-hero" aria-label="Featured collection">
-            <div class="hero-image-wrap">
-                <img id="homeHeroImage" class="hero-image" src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft featured collection">
-                <div class="hero-caption">
-                    <span>Chalice craft / featured</span>
-                    <h2>Quiet objects, made for everyday rituals.</h2>
-                </div>
-            </div>
-        </section>
         <section class="feature-product-grid" aria-label="Featured products">
             <a class="feature-card feature-card-left" href="collection.html?type=bracelets">
                 <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=85" alt="Tide Pool Ring">
@@ -81,15 +73,17 @@
                 <span>Shop necklace</span>
             </a>
         </section>
-        <section class="home-gallery-section" aria-label="Brand gallery">
+        <section class="home-gallery-section home-hero-slider" aria-label="Featured collection">
             <div class="home-gallery-nav">
                 <button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Previous image">←</button>
                 <button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Next image">→</button>
             </div>
             <div class="home-gallery" id="homeGallery">
-                <img src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft editorial 1">
-                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=85" alt="Chalice Craft editorial 2">
-                <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85" alt="Chalice Craft editorial 3">
+                <img src="Image/HRbanner_Chalice%20craft.jpg" alt="Chalice Craft featured collection 1">
+                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1400&q=85" alt="Chalice Craft necklace product">
+                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1400&q=85" alt="Chalice Craft ring product">
+                <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=1400&q=85" alt="Chalice Craft bracelet product">
+                <img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=1400&q=85" alt="Chalice Craft earrings product">
             </div>
         </section>
         <section class="featured-categories" aria-labelledby="featuredCategoriesTitle">
@@ -282,6 +276,18 @@
     <script src="script.js"></script>
     <script src="admin-sync.js"></script>
     <script src="brand-menu.js"></script>
+    <script>
+        if (sessionStorage.getItem('moriRole') === 'admin' || localStorage.getItem('moriRole') === 'admin') {
+            const adminProfile = document.getElementById('loginToggle');
+            adminProfile.textContent = 'Profile';
+            adminProfile.setAttribute('aria-label', 'Open admin dashboard');
+            adminProfile.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                window.location.href = 'dashboard.html';
+            }, true);
+        }
+    </script>
 </body>
 
 </html>
